@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { Animate } from 'react-simple-animate';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import findElementXandY from './utilities/findElementXandY';
 import {
   calculateDragDistance,
