@@ -1,2 +1,2 @@
-# react-simple-input-range
+# React Simple Input Range
 React input range
