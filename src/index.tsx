@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Animate } from 'react-simple-animate';
 import debounce from 'lodash/debounce';
-import findElementXandY from '../../utilities/findElementXandY';
+import findElementXandY from './utilities/findElementXandY';
 import {
   calculateDragDistance,
   getRangedPositionX,
@@ -12,10 +12,10 @@ import {
   getDistancePerMove,
   getTouchPosition,
   getMousePosition,
-} from './sliderMeasure';
+} from './utilities/sliderMeasure';
 import SliderIndicator from './SliderIndicator';
-import isTouchDevice from '../../utilities/isTouchDevice';
-import preventScrollOnMobile from '../../utilities/preventScrollOnMobile';
+import isTouchDevice from './utilities/isTouchDevice';
+import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 
 const colors = {};
 const buttonSize = 33;
@@ -93,7 +93,7 @@ const Text = styled.span`
 type Props = {
   value: number,
   totalStepsNumber: number,
-  onChange: Object => void,
+  onChange: (any) => void,
   valueOffset: number,
   footer: React.Node,
   heading: React.Node,
@@ -114,7 +114,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   wrapperRef: any = React.createRef();
 
-  touchDevice = isTouchDevice();
+  touchDevice: boolean = isTouchDevice();
 
   maxScrollDistance = 0;
 
@@ -275,9 +275,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   onBlur = () => document.removeEventListener('keydown', this.onKeyEvent);
 
-  touchDevice: boolean;
-
-  timer: TimeoutID;
+  timer: number;
 
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
     const { totalStepsNumber, valueOffset, onChange } = this.props;

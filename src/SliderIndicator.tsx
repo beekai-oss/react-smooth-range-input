@@ -1,20 +1,22 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { rem } from '../../styled/conversion';
-import createArrayWithNumbers from '../../utilities/createArrayWithNumbers';
-import colors from '../../styled/colors';
+import createArrayWithNumbers from './utilities/createArrayWithNumbers';
+
+const colors = {
+  sliderLightBlue: '#000',
+};
 
 const PipeGroup = styled.div`
   display: flex;
   width: 100%;
-  padding-top: ${rem(15)};
+  padding-top: 15px;
   justify-content: space-around;
 `;
 
 const Pipe = styled.span`
-  height: ${rem(10)};
-  width: ${rem(1)};
+  height: 10px;
+  width: 1px;
   background: ${colors.sliderLightBlue};
 `;
 
