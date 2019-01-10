@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
 import { Animate } from 'react-simple-animate';
 import debounce from 'lodash/debounce';
 import findElementXandY from './utilities/findElementXandY';
@@ -17,10 +16,6 @@ import SliderIndicator from './SliderIndicator';
 import isTouchDevice from './utilities/isTouchDevice';
 import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 
-const colors = {
-  primary: '',
-  white: '',
-};
 const buttonSize = 33;
 const wrapperOffset = 3;
 const delayMsForAnimation = 200;
@@ -34,73 +29,15 @@ const calculatePositionWithOffset = calculatePosition.bind(null, wrapperOffset, 
 const bubbleWithTail = 'M38.8,19.9C38.8,30.4,19.9,63,19.9,63S1,30.4,1,19.9S9.5,1,19.9,1S38.8,9.5,38.8,19.9z';
 const bubble = 'M38.8,43.9c0,10.4-8.5,18.9-18.9,18.9S1,54.4,1,43.9S9.5,24,19.9,24S38.8,33.5,38.8,43.9z';
 
-export const Root = styled.div`
-  height: 40px;
-  border-radius: 4px;
-  background: ${colors.primary};
-  position: relative;
-  user-select: none;
-  cursor: pointer;
-  max-width: 459px;
-  margin-bottom: 50px;
-`;
-
-const Background = styled.div`
-  background: ${colors.white};
-  height: buttonSize - 2px;
-  width: buttonSize - 2px;
-  border-radius: 50%;
-  left: 2px;
-  position: absolute;
-`;
-
-const RoundButton = styled.div`
-  border-radius: 50%;
-  width: buttonSizepx;
-  height: buttonSizepx;
-  font-size: 12px;
-  color: ${colors.white};
-  position: absolute;
-  white-space: nowrap;
-  text-align: center;
-  top: 2px;
-  cursor: move;
-  cursor: -webkit-grab;
-  font-weight: 600;
-  padding: 2)} 0px;
-  background: none;
-  border: none;
-`;
-
-const CircleSvg = styled.svg`
-  position: absolute;
-  top: -23px;
-  left: 1px;
-
-  & > path {
-    transition: 0.3s all;
-    fill: ${colors.primary};
-  }
-`;
-
-const Text = styled.span`
-  position: absolute;
-  top: 10px;
-  left: -1px;
-  width: buttonSizepx;
-  color: ${colors.primary};
-  text-align: center;
-`;
-
 type Props = {
-  value: number,
-  totalStepsNumber: number,
-  onChange: (any) => void,
-  min: number,
-  footer: React.ReactNode,
-  header: React.ReactNode,
-  disabled: boolean,
-  // max = 30
+  value: number;
+  totalStepsNumber: number;
+  onChange: (any) => void;
+  min: number;
+  footer: React.ReactNode;
+  header: React.ReactNode;
+  disabled: boolean;
+  max: number;
 };
 
 type State = {
@@ -134,7 +71,8 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { value, min, totalStepsNumber } = this.props;
+    const { value, min, max } = this.props;
+    const totalStepsNumber = max - min;
     this.maxScrollDistance = getMaxScrollDistance(width, buttonSize, wrapperOffset);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
@@ -162,7 +100,8 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   onResize = debounce(() => {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { min, totalStepsNumber } = this.props;
+    const { min, max } = this.props;
+    const totalStepsNumber = max - min;
     this.maxScrollDistance = getMaxScrollDistance(width, buttonSize, wrapperOffset);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
 
@@ -282,7 +221,8 @@ export default class Slider extends React.PureComponent<Props, State> {
   onBlur = () => document.removeEventListener('keydown', this.onKeyEvent);
 
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
-    const { totalStepsNumber, min, onChange } = this.props;
+    const { max, min, onChange } = this.props;
+    const totalStepsNumber = max - min;
     const { dragX } = this.state;
 
     this.value = calculateDragDistance({
@@ -316,19 +256,43 @@ export default class Slider extends React.PureComponent<Props, State> {
         >
           {header}
         </Animate>
-        <Root
+        <div
+          style={{
+            height: '40px',
+            borderRadius: '4px',
+            background: 'red',
+            position: 'relative',
+            userSelect: 'none',
+            cursor: 'pointer',
+            maxWidth: '459px',
+            marginBottom: '50px',
+          }}
           ref={this.wrapperRef}
           onClick={this.slideTo}
           onTouchStart={this.onTouchStart}
           onTouchMove={this.onTouchMove}
           onTouchEnd={this.onInteractEnd}
         >
-          <RoundButton
+          <div
             tabIndex={0}
             onClick={e => e.stopPropagation()}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             style={{
+              borderRadius: '50%',
+              width: `${buttonSize}px`,
+              height: `${buttonSize}px`,
+              fontSize: '12px',
+              color: '#fff',
+              position: 'absolute',
+              whiteSpace: 'nowrap',
+              textAlign: 'center',
+              top: '2px',
+              cursor: '-webkit-grab',
+              fontWeight: 600,
+              padding: '20px',
+              background: 'none',
+              border: 'none',
               transform: `translateX(${dragX}px)`,
               transition: this.isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
             }}
@@ -336,8 +300,8 @@ export default class Slider extends React.PureComponent<Props, State> {
             onMouseUp={this.onInteractEnd}
             role="slider"
             aria-valuenow={this.value}
-            aria-valuemin="2"
-            aria-valuemax="30"
+            aria-valuemin={2}
+            aria-valuemax={30}
             aria-valuetext="Years of loan"
           >
             <input
@@ -363,9 +327,27 @@ export default class Slider extends React.PureComponent<Props, State> {
               }}
               easeType="cubic-bezier(0.86, 0, 0.07, 1)"
               render={({ style }) => (
-                <CircleSvg style={style} x="0px" y="0px" width={`${buttonSize}px`} height="64px" viewBox="0 0 40 64">
-                  <path d={showBubble ? bubbleWithTail : bubble} />
-                </CircleSvg>
+                <svg
+                  style={{
+                    position: 'absolute',
+                    top: '-23px',
+                    left: '1px',
+                    ...style,
+                  }}
+                  x="0px"
+                  y="0px"
+                  width={`${buttonSize}px`}
+                  height="64px"
+                  viewBox="0 0 40 64"
+                >
+                  <path
+                    style={{
+                      transition: '0.3s all',
+                      fill: 'red',
+                    }}
+                    d={showBubble ? bubbleWithTail : bubble}
+                  />
+                </svg>
               )}
             />
 
@@ -378,17 +360,38 @@ export default class Slider extends React.PureComponent<Props, State> {
               durationSeconds={0.3}
               reverseDurationSeconds={0.1}
               render={({ style }) => (
-                <Background style={style}>
-                  <Text>{this.value}</Text>
-                </Background>
+                <div
+                  style={{
+                    background: '#fff',
+                    height: `${buttonSize - 2}px`,
+                    width: `${buttonSize - 2}px`,
+                    borderRadius: '50%',
+                    left: '2px',
+                    position: 'absolute',
+                    ...style,
+                  }}
+                >
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '10px',
+                      left: '-1px',
+                      width: `${buttonSize}px`,
+                      color: 'red',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {this.value}
+                  </span>
+                </div>
               )}
             />
-          </RoundButton>
+          </div>
 
           <SliderIndicator />
 
           {footer}
-        </Root>
+        </div>
       </>
     );
   }
