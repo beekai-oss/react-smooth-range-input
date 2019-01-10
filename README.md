@@ -1,2 +1,2 @@
-# React Range Slider
+# React Smooth Range Input
 React input range
