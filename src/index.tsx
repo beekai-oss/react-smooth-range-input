@@ -44,7 +44,6 @@ export const Root = styled.div`
   max-width: 459px;
   margin-bottom: 50px;
 `;
-Root.displayName = 'Root';
 
 const Background = styled.div`
   background: ${colors.white};
@@ -94,12 +93,14 @@ const Text = styled.span`
 `;
 
 type Props = {
-  value: number;
-  totalStepsNumber: number;
-  onChange: (any) => void;
-  valueOffset: number;
-  footer: React.ReactNode;
-  heading: React.ReactNode;
+  value: number,
+  totalStepsNumber: number,
+  onChange: (any) => void,
+  min: number,
+  footer: React.ReactNode,
+  header: React.ReactNode,
+  disabled: boolean,
+  // max = 30
 };
 
 type State = {
@@ -133,7 +134,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { value, valueOffset, totalStepsNumber } = this.props;
+    const { value, min, totalStepsNumber } = this.props;
     this.maxScrollDistance = getMaxScrollDistance(width, buttonSize, wrapperOffset);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
@@ -143,7 +144,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       dragX: calculatePositionWithOffset({
         totalWidth: width,
         value,
-        valueOffset,
+        min,
         totalStepsNumber,
       }),
     });
@@ -161,7 +162,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   onResize = debounce(() => {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { valueOffset, totalStepsNumber } = this.props;
+    const { min, totalStepsNumber } = this.props;
     this.maxScrollDistance = getMaxScrollDistance(width, buttonSize, wrapperOffset);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
 
@@ -169,7 +170,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       dragX: calculatePositionWithOffset({
         totalWidth: width,
         value: this.value,
-        valueOffset,
+        min,
         totalStepsNumber,
       }),
     });
@@ -281,14 +282,14 @@ export default class Slider extends React.PureComponent<Props, State> {
   onBlur = () => document.removeEventListener('keydown', this.onKeyEvent);
 
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
-    const { totalStepsNumber, valueOffset, onChange } = this.props;
+    const { totalStepsNumber, min, onChange } = this.props;
     const { dragX } = this.state;
 
     this.value = calculateDragDistance({
       dragDistance: dragX,
       maxPositionX: this.maxScrollDistance,
       totalStepsNumber,
-      valueOffset,
+      min,
     });
 
     if (isUpdateStore) {
@@ -300,7 +301,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   render() {
     const { dragX, showBubble } = this.state;
-    const { footer, heading } = this.props;
+    const { footer, header } = this.props;
 
     this.calculateValueAndUpdateStore(false);
 
@@ -313,7 +314,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           startStyle={{ opacity: 1 }}
           endStyle={{ opacity: 0 }}
         >
-          {heading}
+          {header}
         </Animate>
         <Root
           ref={this.wrapperRef}

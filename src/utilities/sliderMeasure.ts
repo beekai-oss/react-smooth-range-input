@@ -3,15 +3,15 @@ export const calculateDragDistance = ({
   dragDistance,
   maxPositionX,
   totalStepsNumber,
-  valueOffset,
+  min,
 }: {
   dragDistance: number,
   maxPositionX: number,
   totalStepsNumber: number,
-  valueOffset: number,
+  min: number,
 }) => {
   const result = dragDistance ? dragDistance / (maxPositionX / totalStepsNumber) : 0;
-  return Math.ceil(result + valueOffset);
+  return Math.ceil(result + min);
 };
 
 export const calculatePosition = (
@@ -20,18 +20,18 @@ export const calculatePosition = (
   {
     totalWidth,
     value,
-    valueOffset,
+    min,
     totalStepsNumber,
   }: {
     totalWidth: number,
     value: number,
-    valueOffset: number,
+    min: number,
     totalStepsNumber: number,
   },
 ) => {
   const maxPositionX = totalWidth - buttonSize - wrapperOffset;
   const arrowKeyPerClickDistance = maxPositionX / totalStepsNumber;
-  const position = (value - valueOffset) * arrowKeyPerClickDistance;
+  const position = (value - min) * arrowKeyPerClickDistance;
 
   return position > maxPositionX ? maxPositionX : position;
 };
