@@ -17,7 +17,10 @@ import SliderIndicator from './SliderIndicator';
 import isTouchDevice from './utilities/isTouchDevice';
 import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 
-const colors = {};
+const colors = {
+  primary: '',
+  white: '',
+};
 const buttonSize = 33;
 const wrapperOffset = 3;
 const delayMsForAnimation = 200;
@@ -91,17 +94,17 @@ const Text = styled.span`
 `;
 
 type Props = {
-  value: number,
-  totalStepsNumber: number,
-  onChange: (any) => void,
-  valueOffset: number,
-  footer: React.Node,
-  heading: React.Node,
+  value: number;
+  totalStepsNumber: number;
+  onChange: (any) => void;
+  valueOffset: number;
+  footer: React.ReactNode;
+  heading: React.ReactNode;
 };
 
 type State = {
-  dragX: number,
-  showBubble: boolean,
+  dragX: number;
+  showBubble: boolean;
 };
 
 export default class Slider extends React.PureComponent<Props, State> {
@@ -125,6 +128,8 @@ export default class Slider extends React.PureComponent<Props, State> {
   value = 0;
 
   isTouching = false;
+
+  timer: any;
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
@@ -275,8 +280,6 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   onBlur = () => document.removeEventListener('keydown', this.onKeyEvent);
 
-  timer: number;
-
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
     const { totalStepsNumber, valueOffset, onChange } = this.props;
     const { dragX } = this.state;
@@ -338,7 +341,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           >
             <input
               type="range"
-              defaultValue={this.value}
+              defaultValue={this.value.toString()}
               style={{
                 visibility: 'hidden',
                 width: 0,

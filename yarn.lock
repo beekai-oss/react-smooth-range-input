@@ -52,6 +52,19 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
   integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
 
+"@types/prop-types@*":
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
+  integrity sha512-3AQoUxQcQtLHsK25wtTWIoIpgYjH3vSDroZOUr7PpCHw/jLY1RB9z9E8dBT/OSmwStVgkRNvdh+ZHNiomRieaw==
+
+"@types/react@^16.7.18":
+  version "16.7.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.18.tgz#f4ce0d539a893dd61e36cd11ae3a5e54f5a48337"
+  integrity sha512-Tx4uu3ppK53/iHk6VpamMP3f3ahfDLEVt3ZQc8TFm30a1H3v9lMsCntBREswZIW/SKrvJjkb3Hq8UwO6GREBng==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
 acorn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.0.5.tgz#81730c0815f3f3b34d8efa95cb7430965f4d887a"
@@ -177,6 +190,11 @@ css-to-react-native@^2.2.2:
     css-color-keywords "^1.0.0"
     fbjs "^0.8.5"
     postcss-value-parser "^3.3.0"
+
+csstype@^2.2.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.0.tgz#6cf7b2fa7fc32aab3d746802c244d4eda71371a2"
+  integrity sha512-by8hi8BlLbowQq0qtkx54d9aN73R9oUW20HISpka5kmgsR9F7nnxgfsemuR2sdCKZh+CDNf5egW9UZMm4mgJRg==
 
 define-properties@^1.1.2:
   version "1.1.3"
