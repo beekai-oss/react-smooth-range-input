@@ -1,5 +1,5 @@
 {
-  "name": "react-simple-input-range",
+  "name": "react-range-slider",
   "version": "0.0.1",
   "main": "build/index.js",
   "types": "index.d.ts",
