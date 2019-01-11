@@ -31,12 +31,11 @@ const bubble = 'M38.8,43.9c0,10.4-8.5,18.9-18.9,18.9S1,54.4,1,43.9S9.5,24,19.9,2
 
 type Props = {
   value: number;
-  totalStepsNumber: number;
   onChange: (any) => void;
-  min: number;
   footer: React.ReactNode;
   header: React.ReactNode;
   disabled: boolean;
+  min: number;
   max: number;
 };
 
