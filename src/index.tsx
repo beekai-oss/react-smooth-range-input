@@ -117,7 +117,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   restoreTouchMove = () => {};
 
-  commonOnStart = (e: Event) => {
+  commonOnStart: any = (e: Event) => {
     e.stopPropagation();
     this.isControlByKeyBoard = false;
     this.setState({
@@ -125,7 +125,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     });
   };
 
-  onTouchStart = (e: TouchEvent) => {
+  onTouchStart: any = (e: TouchEvent): void => {
     e.stopPropagation();
     this.isTouching = true;
     const { left } = this.wrapperRef.current.getBoundingClientRect();
@@ -136,14 +136,14 @@ export default class Slider extends React.PureComponent<Props, State> {
     });
   };
 
-  onMouseDown = (e: MouseEvent) => {
+  onMouseDown: any = (e: MouseEvent): void => {
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onInteractEnd);
     this.commonOnStart(e);
     this.clientX = e.clientX;
   };
 
-  onInteractEnd = (e: Event) => {
+  onInteractEnd: any = (e: Event): any => {
     e.stopPropagation();
     this.isTouching = false;
     this.setState({
@@ -154,7 +154,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.calculateValueAndUpdateStore();
   };
 
-  onTouchMove = (e: TouchEvent) => {
+  onTouchMove: any = (e: TouchEvent) => {
     e.stopPropagation();
     const { left } = this.wrapperRef.current.getBoundingClientRect();
 
@@ -390,7 +390,13 @@ export default class Slider extends React.PureComponent<Props, State> {
 
           <SliderIndicator />
 
-          {footer}
+          <div
+            style={{
+              pointerEvents: 'none',
+            }}
+          >
+            {footer}
+          </div>
         </div>
       </>
     );
