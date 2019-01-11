@@ -3,7 +3,13 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  testMatch: ["**/?(*.)+(spec|test).ts?(x)"],
-  setupFiles: ["<rootDir>/test/setup.ts"],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  globals: {
+    'ts-jest': {
+      tsConfigFile: 'tsconfig.jest.json',
+    },
+  },
+  testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
+  setupFiles: ['<rootDir>/setup.ts'],
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
 };

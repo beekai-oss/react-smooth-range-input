@@ -32,14 +32,14 @@ type Props = {
   onChange?: (any) => void;
   footer?: React.ReactNode;
   header?: React.ReactNode;
-  height: number;
   backgroundColor?: string;
   inputColor?: string;
   textColor?: string;
   disabled?: boolean;
+  padding?: number;
+  height: number;
   min: number;
   max: number;
-  padding: number;
 };
 
 type State = {
@@ -47,7 +47,7 @@ type State = {
   showBubble: boolean;
 };
 
-export default class Slider extends React.PureComponent<Props, State> {
+export class Slider extends React.PureComponent<Props, State> {
   static defaultProps = {
     value: 0,
     onChange: () => {},
