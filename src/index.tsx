@@ -16,8 +16,7 @@ import SliderIndicator from './SliderIndicator';
 import isTouchDevice from './utilities/isTouchDevice';
 import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 
-const buttonSize = 33;
-const wrapperOffset = 3;
+const topBottomPadding = 8;
 const delayMsForAnimation = 200;
 const commonAnimationProps = {
   easeType: 'cubic-bezier(0.86, 0, 0.07, 1)',
@@ -25,18 +24,22 @@ const commonAnimationProps = {
     transform: 'translateY(0)',
   },
 };
-const calculatePositionWithOffset = calculatePosition.bind(null, wrapperOffset, buttonSize);
 const bubbleWithTail = 'M38.8,19.9C38.8,30.4,19.9,63,19.9,63S1,30.4,1,19.9S9.5,1,19.9,1S38.8,9.5,38.8,19.9z';
 const bubble = 'M38.8,43.9c0,10.4-8.5,18.9-18.9,18.9S1,54.4,1,43.9S9.5,24,19.9,24S38.8,33.5,38.8,43.9z';
 
 type Props = {
-  value: number;
-  onChange: (any) => void;
-  footer: React.ReactNode;
-  header: React.ReactNode;
-  disabled: boolean;
+  value?: number;
+  onChange?: (any) => void;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
+  height: number;
+  backgroundColor?: string;
+  inputColor?: string;
+  textColor?: string;
+  disabled?: boolean;
   min: number;
   max: number;
+  padding: number;
 };
 
 type State = {
@@ -45,6 +48,19 @@ type State = {
 };
 
 export default class Slider extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    value: 0,
+    onChange: () => {},
+    header: null,
+    footer: null,
+    backgroundColor: '#244BA8',
+    inputTextColor: '#244BA8',
+    inputBackgroundColor: '#fff',
+    disabled: false,
+    height: 40,
+    leftRightPadding: 2,
+  };
+
   state = {
     dragX: 0,
     showBubble: false,
@@ -68,17 +84,21 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   timer: any;
 
+  buttonSize = this.props.height - topBottomPadding;
+
+  calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding, this.buttonSize);
+
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { value, min, max } = this.props;
+    const { value, min, max, padding } = this.props;
     const totalStepsNumber = max - min;
-    this.maxScrollDistance = getMaxScrollDistance(width, buttonSize, wrapperOffset);
+    this.maxScrollDistance = getMaxScrollDistance(width, this.buttonSize, padding);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
     window.addEventListener('resize', this.onResize);
 
     this.setState({
-      dragX: calculatePositionWithOffset({
+      dragX: this.calculatePositionWithOffset({
         totalWidth: width,
         value,
         min,
@@ -99,13 +119,13 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   onResize = debounce(() => {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { min, max } = this.props;
+    const { min, max, padding } = this.props;
     const totalStepsNumber = max - min;
-    this.maxScrollDistance = getMaxScrollDistance(width, buttonSize, wrapperOffset);
+    this.maxScrollDistance = getMaxScrollDistance(width, this.buttonSize, padding);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
 
     this.setState({
-      dragX: calculatePositionWithOffset({
+      dragX: this.calculatePositionWithOffset({
         totalWidth: width,
         value: this.value,
         min,
@@ -131,7 +151,10 @@ export default class Slider extends React.PureComponent<Props, State> {
 
     this.commonOnStart(e);
     this.setState({
-      dragX: getRangedPositionX(getTouchPosition(e.targetTouches[0].pageX, left, buttonSize), this.maxScrollDistance),
+      dragX: getRangedPositionX(
+        getTouchPosition(e.targetTouches[0].pageX, left, this.buttonSize),
+        this.maxScrollDistance,
+      ),
     });
   };
 
@@ -158,7 +181,10 @@ export default class Slider extends React.PureComponent<Props, State> {
     const { left } = this.wrapperRef.current.getBoundingClientRect();
 
     this.setState({
-      dragX: getRangedPositionX(getTouchPosition(e.targetTouches[0].pageX, left, buttonSize), this.maxScrollDistance),
+      dragX: getRangedPositionX(
+        getTouchPosition(e.targetTouches[0].pageX, left, this.buttonSize),
+        this.maxScrollDistance,
+      ),
     });
   };
 
@@ -181,7 +207,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     clearTimeout(this.timer);
 
     this.setState({
-      dragX: getRangedPositionX(getTouchPosition(x, left, buttonSize), this.maxScrollDistance),
+      dragX: getRangedPositionX(getTouchPosition(x, left, this.buttonSize), this.maxScrollDistance),
     });
 
     this.timer = setTimeout(() => {
@@ -240,7 +266,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   render() {
     const { dragX, showBubble } = this.state;
-    const { footer, header } = this.props;
+    const { footer, header, height } = this.props;
 
     this.calculateValueAndUpdateStore(false);
 
@@ -257,13 +283,12 @@ export default class Slider extends React.PureComponent<Props, State> {
         </Animate>
         <div
           style={{
-            height: '40px',
+            height: `${height}px`,
             borderRadius: '4px',
             background: 'red',
             position: 'relative',
             userSelect: 'none',
             cursor: 'pointer',
-            maxWidth: '459px',
             marginBottom: '50px',
           }}
           ref={this.wrapperRef}
@@ -279,8 +304,8 @@ export default class Slider extends React.PureComponent<Props, State> {
             onBlur={this.onBlur}
             style={{
               borderRadius: '50%',
-              width: `${buttonSize}px`,
-              height: `${buttonSize}px`,
+              width: `${this.buttonSize}px`,
+              height: `${this.buttonSize}px`,
               fontSize: '12px',
               color: '#fff',
               position: 'absolute',
@@ -289,7 +314,7 @@ export default class Slider extends React.PureComponent<Props, State> {
               top: '2px',
               cursor: '-webkit-grab',
               fontWeight: 600,
-              padding: '20px',
+              leftRightPadding: '20px',
               background: 'none',
               border: 'none',
               transform: `translateX(${dragX}px)`,
@@ -335,7 +360,7 @@ export default class Slider extends React.PureComponent<Props, State> {
                   }}
                   x="0px"
                   y="0px"
-                  width={`${buttonSize}px`}
+                  width={`${this.buttonSize}px`}
                   height="64px"
                   viewBox="0 0 40 64"
                 >
@@ -362,8 +387,8 @@ export default class Slider extends React.PureComponent<Props, State> {
                 <div
                   style={{
                     background: '#fff',
-                    height: `${buttonSize - 2}px`,
-                    width: `${buttonSize - 2}px`,
+                    height: `${this.buttonSize - 2}px`,
+                    width: `${this.buttonSize - 2}px`,
                     borderRadius: '50%',
                     left: '2px',
                     position: 'absolute',
@@ -375,7 +400,7 @@ export default class Slider extends React.PureComponent<Props, State> {
                       position: 'absolute',
                       top: '10px',
                       left: '-1px',
-                      width: `${buttonSize}px`,
+                      width: `${this.buttonSize}px`,
                       color: 'red',
                       textAlign: 'center',
                     }}
