@@ -3,9 +3,10 @@ import createArrayWithNumbers from './utilities/createArrayWithNumbers';
 
 interface Props {
   amount: number,
+  color?: string,
 }
 
-export default ({ amount }: Props) => (
+export default ({ amount, color }: Props) => (
   <div
     style={{
       display: 'flex',
@@ -19,7 +20,7 @@ export default ({ amount }: Props) => (
         style={{
           height: '10px',
           width: '1px',
-          background: 'blue',
+          background: color,
         }}
         key={index}
       />

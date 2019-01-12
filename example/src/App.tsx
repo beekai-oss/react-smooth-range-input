@@ -7,16 +7,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Slider value={0} min={2} max={30} />
+          <div style={{ padding: '250px 20px 20px', width: '80%' }}>
+            <Slider value={0} min={1} max={30} />
+          </div>
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
             Learn React
           </a>
         </header>
