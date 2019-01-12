@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Slider } from './src/index';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <Slider value={0} min={2} max={30} />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
