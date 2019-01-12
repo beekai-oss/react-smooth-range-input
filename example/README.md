@@ -1,4 +1,4 @@
-# React smooth range input
+# React Smooth Range Input Example
 
 ## Install and start
 
