@@ -78,14 +78,15 @@ export class Slider extends React.PureComponent<Props, State> {
 
   buttonSize = this.props.height - topBottomPadding;
 
+  totalStepsNumber: number = this.props.max - this.props.min;
+
   calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.buttonSize);
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
     const { value, min, max, padding } = this.props;
-    const totalStepsNumber = max - min;
     this.maxScrollDistance = getMaxScrollDistance(width, this.buttonSize, padding!);
-    this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
+    this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
     window.addEventListener('resize', this.onResize);
 
@@ -94,7 +95,7 @@ export class Slider extends React.PureComponent<Props, State> {
         totalWidth: width,
         value: value!,
         min,
-        totalStepsNumber,
+        totalStepsNumber: this.totalStepsNumber,
       }),
     });
   }
@@ -111,17 +112,16 @@ export class Slider extends React.PureComponent<Props, State> {
 
   onResize = debounce(() => {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { min, max, padding } = this.props;
-    const totalStepsNumber = max - min;
+    const { min, padding } = this.props;
     this.maxScrollDistance = getMaxScrollDistance(width, this.buttonSize, padding!);
-    this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, totalStepsNumber);
+    this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
 
     this.setState({
       dragX: this.calculatePositionWithOffset({
         totalWidth: width,
         value: this.value,
         min,
-        totalStepsNumber,
+        totalStepsNumber: this.totalStepsNumber,
       }),
     });
   }, 1000);
@@ -233,10 +233,6 @@ export class Slider extends React.PureComponent<Props, State> {
     this.calculateValueAndUpdateStore();
   };
 
-  onFocus = () => document.addEventListener('keydown', this.onKeyEvent);
-
-  onBlur = () => document.removeEventListener('keydown', this.onKeyEvent);
-
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
     const { max, min, onChange } = this.props;
     const totalStepsNumber = max - min;
@@ -256,7 +252,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
   render() {
     const { dragX, showBubble } = this.state;
-    const { height, hasTickMarks, max, min, inputBackgroundColor, backgroundColor, inputTextColor } = this.props;
+    const { height, hasTickMarks, inputBackgroundColor, backgroundColor, inputTextColor } = this.props;
 
     this.calculateValueAndUpdateStore(false);
 
@@ -280,8 +276,8 @@ export class Slider extends React.PureComponent<Props, State> {
           onTouchEnd={this.onInteractEnd}
         >
           <Controller
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
+            onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
+            onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
             buttonSize={this.buttonSize}
             height={height}
             dragX={dragX}
@@ -295,7 +291,7 @@ export class Slider extends React.PureComponent<Props, State> {
             inputTextColor={inputTextColor}
           />
 
-          {hasTickMarks && <SliderIndicator color={inputBackgroundColor} amount={max - min} />}
+          {hasTickMarks && <SliderIndicator color={inputBackgroundColor} amount={this.totalStepsNumber} />}
         </div>
       </>
     );
