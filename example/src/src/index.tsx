@@ -84,7 +84,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { value, min, max, padding } = this.props;
+    const { value, min, padding } = this.props;
     this.maxScrollDistance = getMaxScrollDistance(width, this.buttonSize, padding!);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
@@ -92,7 +92,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
     this.setState({
       dragX: this.calculatePositionWithOffset({
-        totalWidth: width,
+        width,
         value: value!,
         min,
         totalStepsNumber: this.totalStepsNumber,
@@ -118,7 +118,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
     this.setState({
       dragX: this.calculatePositionWithOffset({
-        totalWidth: width,
+        width,
         value: this.value,
         min,
         totalStepsNumber: this.totalStepsNumber,

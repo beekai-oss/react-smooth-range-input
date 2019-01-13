@@ -93,6 +93,7 @@ export default function Controller({
         }}
         endStyle={{
           transform: 'translateY(-22px) scale(1.65)',
+          filter: 'drop-shadow( 0 0 2px rgba(0, 0, 0, .2))',
         }}
         easeType="cubic-bezier(0.86, 0, 0.07, 1)"
         render={({ style }) => (

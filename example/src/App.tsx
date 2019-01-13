@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div style={{ padding: '250px 20px 20px', width: '80%' }}>
-            <Slider value={0} min={1} max={30} />
+            <Slider value={1} min={1} max={30} />
           </div>
           <p>
             Edit <code>src/App.tsx</code> and save to reload.

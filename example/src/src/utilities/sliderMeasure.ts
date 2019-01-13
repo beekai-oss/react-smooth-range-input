@@ -17,20 +17,22 @@ export const calculatePosition = (
   wrapperOffset: number,
   buttonSize: number,
   {
-    totalWidth,
+    width,
     value,
     min,
     totalStepsNumber,
   }: {
-    totalWidth: number,
+    width: number,
     value: number,
     min: number,
     totalStepsNumber: number,
   },
 ) => {
-  const maxPositionX = totalWidth - buttonSize - wrapperOffset;
+  const maxPositionX = width - buttonSize - wrapperOffset;
   const arrowKeyPerClickDistance = maxPositionX / totalStepsNumber;
   const position = (value - min) * arrowKeyPerClickDistance;
+
+  if (position < 0) return 0;
 
   return position > maxPositionX ? maxPositionX : position;
 };
