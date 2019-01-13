@@ -22,8 +22,8 @@ interface Props {
   onMouseDown: (MouseEvent) => void;
   onInteractEnd: (Event) => void;
   backgroundColor?: string;
-  inputBackgroundColor?: string;
-  inputTextColor?: string;
+  textBackgroundColor?: string;
+  textColor?: string;
 }
 
 export default function Controller({
@@ -38,8 +38,8 @@ export default function Controller({
   onMouseDown,
   onInteractEnd,
   backgroundColor,
-  inputBackgroundColor,
-  inputTextColor,
+  textBackgroundColor,
+  textColor,
 }: Props) {
   return (
     <div
@@ -132,7 +132,7 @@ export default function Controller({
         render={({ style }) => (
           <div
             style={{
-              background: inputBackgroundColor,
+              background: textBackgroundColor,
               height: `${buttonSize}px`,
               width: `${buttonSize}px`,
               borderRadius: '50%',
@@ -146,7 +146,7 @@ export default function Controller({
                 top: '10px',
                 left: 0,
                 width: `${buttonSize}px`,
-                color: inputTextColor,
+                color: textColor,
                 textAlign: 'center',
               }}
             >

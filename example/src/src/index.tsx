@@ -18,17 +18,19 @@ import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 
 const topBottomPadding = 6;
 const delayMsForAnimation = 200;
+const colors = {
+  white: '#fff',
+  blue: '#244BA8',
+};
 
 interface Props {
   value?: number;
   onChange?: (number) => void;
-  inputColor?: string;
-  textColor?: string;
   disabled?: boolean;
   padding?: number;
   backgroundColor?: string;
-  inputTextColor?: string;
-  inputBackgroundColor?: string;
+  textColor?: string;
+  textBackgroundColor?: string;
   height: number;
   hasTickMarks: boolean;
   min: number;
@@ -44,9 +46,9 @@ export class Slider extends React.PureComponent<Props, State> {
   static defaultProps = {
     value: 0,
     onChange: () => {},
-    backgroundColor: '#244BA8',
-    inputTextColor: '#244BA8',
-    inputBackgroundColor: '#fff',
+    backgroundColor: colors.blue,
+    textColor: colors.blue,
+    textBackgroundColor: colors.white,
     disabled: false,
     height: 40,
     padding: 0,
@@ -81,6 +83,8 @@ export class Slider extends React.PureComponent<Props, State> {
   totalStepsNumber: number = this.props.max - this.props.min;
 
   calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.buttonSize);
+
+  restoreTouchMove = () => {};
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
@@ -125,8 +129,6 @@ export class Slider extends React.PureComponent<Props, State> {
       }),
     });
   }, 1000);
-
-  restoreTouchMove = () => {};
 
   commonOnStart: any = (e: Event) => {
     e.stopPropagation();
@@ -234,14 +236,13 @@ export class Slider extends React.PureComponent<Props, State> {
   };
 
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
-    const { max, min, onChange } = this.props;
-    const totalStepsNumber = max - min;
+    const { min, onChange } = this.props;
     const { dragX } = this.state;
 
     this.value = calculateDragDistance({
       dragDistance: dragX,
       maxPositionX: this.maxScrollDistance,
-      totalStepsNumber,
+      totalStepsNumber: this.totalStepsNumber,
       min,
     });
 
@@ -252,7 +253,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
   render() {
     const { dragX, showBubble } = this.state;
-    const { height, hasTickMarks, inputBackgroundColor, backgroundColor, inputTextColor } = this.props;
+    const { height, hasTickMarks, textBackgroundColor, backgroundColor, textColor } = this.props;
 
     this.calculateValueAndUpdateStore(false);
 
@@ -287,11 +288,10 @@ export class Slider extends React.PureComponent<Props, State> {
             onMouseDown={this.onMouseDown}
             onInteractEnd={this.onInteractEnd}
             backgroundColor={backgroundColor}
-            inputBackgroundColor={inputBackgroundColor}
-            inputTextColor={inputTextColor}
+            textBackgroundColor={textBackgroundColor}
+            textColor={textColor}
           />
-
-          {hasTickMarks && <SliderIndicator color={inputBackgroundColor} amount={this.totalStepsNumber} />}
+          {hasTickMarks && <SliderIndicator color={textBackgroundColor} amount={this.totalStepsNumber} />}
         </div>
       </>
     );
