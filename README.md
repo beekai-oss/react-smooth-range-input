@@ -1,2 +1,2 @@
-# React Smooth Range Input
+# 🚧 React Smooth Range Input 🚧 (under development)
 React input range
