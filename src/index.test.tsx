@@ -1,15 +1,26 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { Slider } from './index';
+import Slider from './index';
+
+jest.mock('lodash.debounce', () => data => data);
+jest.mock('./utilities/findElementXandY', () => ({
+  default: () => ({
+    x: 2,
+  }),
+}));
 
 describe('Slider', () => {
-  it('should trigger calculateValueAndUpdateStore function', () => {
-      console.log(Slider);
-    // const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
-    //
-    // tree.instance().calculateValueAndUpdateStore = jest.fn();
-    //
-    // tree.find('Root').simulate('click');
-    // expect(tree.instance().calculateValueAndUpdateStore).toBeCalled();
+  it('should update dragX position when click on the bar', () => {
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+
+    tree
+      .find('div')
+      .at(0)
+      .simulate('click');
+
+    expect(tree.state()).toEqual({
+      dragX: 3,
+      showBubble: false,
+    });
   });
 });
