@@ -15,14 +15,10 @@ import SliderIndicator from './SliderIndicator';
 import Controller from './Controller';
 import isTouchDevice from './utilities/isTouchDevice';
 import preventScrollOnMobile from './utilities/preventScrollOnMobile';
+import colors from './constants/colors';
 
 const topBottomPadding = 6;
 const delayMsForAnimation = 200;
-const colors = {
-  white: '#fff',
-  lightBlue: '#3562cd',
-  blue: '#244BA8',
-};
 
 interface Props {
   value?: number;

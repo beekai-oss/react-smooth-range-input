@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Animate } from 'react-simple-animate';
+import FlipNumbers from 'react-flip-numbers';
+import { bubbleWithTail, bubble } from './constants/svgPath';
 
 const commonAnimationProps = {
   easeType: 'cubic-bezier(0.86, 0, 0.07, 1)',
@@ -7,8 +9,6 @@ const commonAnimationProps = {
     transform: 'translateY(0)',
   },
 };
-const bubbleWithTail = 'M38.8,19.9C38.8,30.4,19.9,63,19.9,63S1,30.4,1,19.9S9.5,1,19.9,1S38.8,9.5,38.8,19.9z';
-const bubble = 'M38.8,43.9c0,10.4-8.5,18.9-18.9,18.9S1,54.4,1,43.9S9.5,24,19.9,24S38.8,33.5,38.8,43.9z';
 
 interface Props {
   onFocus: () => void;
@@ -25,6 +25,17 @@ interface Props {
   textBackgroundColor?: string;
   textColor?: string;
 }
+
+const flipNumberProps = {
+  height: 14,
+  width: 10,
+  color: 'black',
+  background: 'white',
+  perspective: 370,
+  durationSeconds: 0.4,
+  play: true,
+  numberStyle: { outline: '1px solid transparent' },
+};
 
 export default function Controller({
   onFocus,
@@ -150,7 +161,7 @@ export default function Controller({
                 textAlign: 'center',
               }}
             >
-              {value}
+              <FlipNumbers {...flipNumberProps} numbers={value.toString()} />
             </span>
           </div>
         )}
