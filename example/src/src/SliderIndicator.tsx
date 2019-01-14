@@ -2,20 +2,24 @@ import * as React from 'react';
 import createArrayWithNumbers from './utilities/createArrayWithNumbers';
 
 interface Props {
-  amount: number,
-  color?: string,
+  amount: number;
+  isThin: boolean;
+  color?: string;
+  backgroundColor?: string;
+  hasTickMarks?: boolean;
 }
 
-export default ({ amount, color }: Props) => (
+export default ({ amount, color, isThin, backgroundColor, hasTickMarks }: Props) => (
   <div
     style={{
       display: 'flex',
       width: '100%',
-      paddingTop: '15px',
       justifyContent: 'space-around',
+      minHeight: '10px',
+      ...(isThin ? { background: backgroundColor, borderRadius: '4px' } : { paddingTop: '15px' }),
     }}
   >
-    {createArrayWithNumbers(amount).map(index => (
+    {hasTickMarks && createArrayWithNumbers(amount).map(index => (
       <span
         style={{
           height: '10px',

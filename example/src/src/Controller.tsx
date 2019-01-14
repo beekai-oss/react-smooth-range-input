@@ -19,6 +19,7 @@ interface Props {
   dragX: number;
   showBubble: boolean;
   isControlByKeyBoard: boolean;
+  isThin: boolean;
   onMouseDown: (MouseEvent) => void;
   onInteractEnd: (Event) => void;
   backgroundColor?: string;
@@ -51,6 +52,7 @@ export default function Controller({
   backgroundColor,
   textBackgroundColor,
   textColor,
+  isThin,
 }: Props) {
   return (
     <div
@@ -59,19 +61,10 @@ export default function Controller({
       onFocus={onFocus}
       onBlur={onBlur}
       style={{
-        borderRadius: '50%',
-        width: `${buttonSize}px`,
-        height: `${buttonSize}px`,
-        fontSize: '12px',
-        color: '#fff',
         top: `${(height - buttonSize) / 2}px`,
         position: 'absolute',
-        whiteSpace: 'nowrap',
-        textAlign: 'center',
         cursor: '-webkit-grab',
         fontWeight: 600,
-        background: 'none',
-        border: 'none',
         transform: `translateX(${dragX}px)`,
         transition: isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
       }}
@@ -103,15 +96,14 @@ export default function Controller({
           transform: 'translateY(0)',
         }}
         endStyle={{
-          transform: 'translateY(-22px) scale(1.65)',
-          filter: 'drop-shadow( 0 0 2px rgba(0, 0, 0, .2))',
+          transform: `translateY(-${isThin ? 32 : 22}px) scale(1.65)`,
         }}
         easeType="cubic-bezier(0.86, 0, 0.07, 1)"
         render={({ style }) => (
           <svg
             style={{
               position: 'absolute',
-              top: '-23px',
+              top: '-25px',
               left: 0,
               ...style,
             }}
@@ -136,7 +128,7 @@ export default function Controller({
         play={showBubble}
         {...commonAnimationProps}
         endStyle={{
-          transform: 'translateY(-46px) scale(1.3)',
+          transform: `translateY(-${isThin ? 56 : 46}px) scale(1.3)`,
         }}
         durationSeconds={0.3}
         reverseDurationSeconds={0.1}
@@ -158,7 +150,6 @@ export default function Controller({
                 left: 0,
                 width: `${buttonSize}px`,
                 color: textColor,
-                textAlign: 'center',
               }}
             >
               <FlipNumbers {...flipNumberProps} numbers={value.toString()} />

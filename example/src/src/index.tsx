@@ -28,9 +28,9 @@ interface Props {
   backgroundColor?: string;
   textColor?: string;
   textBackgroundColor?: string;
-  height: number;
   hasTickMarks: boolean;
   tickColor?: string;
+  type?: 'thick' | 'thin';
   min: number;
   max: number;
 }
@@ -39,6 +39,8 @@ interface State {
   dragX: number;
   showBubble: boolean;
 }
+
+const height = 40;
 
 export class Slider extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -49,9 +51,9 @@ export class Slider extends React.PureComponent<Props, State> {
     textBackgroundColor: colors.white,
     tickColor: colors.lightBlue,
     disabled: false,
-    height: 40,
     padding: 3,
     hasTickMarks: true,
+    type: 'thick',
   };
 
   state = {
@@ -77,7 +79,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
   timer: any;
 
-  buttonSize = this.props.height - topBottomPadding;
+  buttonSize = height - topBottomPadding;
 
   totalStepsNumber: number = this.props.max - this.props.min;
 
@@ -275,47 +277,55 @@ export class Slider extends React.PureComponent<Props, State> {
 
   render() {
     const { dragX, showBubble } = this.state;
-    const { height, hasTickMarks, textBackgroundColor, backgroundColor, textColor, tickColor } = this.props;
+    const { hasTickMarks, textBackgroundColor, backgroundColor, textColor, tickColor, type } = this.props;
+    const isThin = type === 'thin';
 
     this.calculateValueAndUpdateStore(false);
+    console.log(hasTickMarks)
 
     return (
-      <>
-        <div
-          style={{
-            height: `${height}px`,
-            width: '100%',
-            borderRadius: '4px',
-            background: backgroundColor,
-            position: 'relative',
-            userSelect: 'none',
-            cursor: 'pointer',
-            marginBottom: '50px',
-          }}
-          ref={this.wrapperRef}
-          onClick={this.slideTo}
-          onTouchStart={this.onTouchStart}
-          onTouchMove={this.onTouchMove}
-          onTouchEnd={this.onInteractEnd}
-        >
-          <Controller
-            onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
-            onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
-            buttonSize={this.buttonSize}
-            height={height}
-            dragX={dragX}
-            showBubble={showBubble}
-            isControlByKeyBoard={this.isControlByKeyBoard}
-            value={this.value}
-            onMouseDown={this.onMouseDown}
-            onInteractEnd={this.onInteractEnd}
+      <div
+        style={{
+          height: `${height}px`,
+          width: '100%',
+          borderRadius: '4px',
+          ...(isThin ? { paddingTop: '15px' } : { background: backgroundColor }),
+          position: 'relative',
+          userSelect: 'none',
+          cursor: 'pointer',
+        }}
+        ref={this.wrapperRef}
+        onClick={this.slideTo}
+        onTouchStart={this.onTouchStart}
+        onTouchMove={this.onTouchMove}
+        onTouchEnd={this.onInteractEnd}
+      >
+        <Controller
+          onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
+          onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
+          buttonSize={this.buttonSize}
+          height={height}
+          dragX={dragX}
+          showBubble={showBubble}
+          isControlByKeyBoard={this.isControlByKeyBoard}
+          value={this.value}
+          onMouseDown={this.onMouseDown}
+          onInteractEnd={this.onInteractEnd}
+          backgroundColor={backgroundColor}
+          textBackgroundColor={textBackgroundColor}
+          textColor={textColor}
+          isThin={isThin}
+        />
+        {(hasTickMarks || isThin) && (
+          <SliderIndicator
             backgroundColor={backgroundColor}
-            textBackgroundColor={textBackgroundColor}
-            textColor={textColor}
+            color={tickColor}
+            amount={this.totalStepsNumber}
+            isThin={isThin}
+            hasTickMarks={hasTickMarks}
           />
-          {hasTickMarks && <SliderIndicator color={tickColor} amount={this.totalStepsNumber} />}
-        </div>
-      </>
+        )}
+      </div>
     );
   }
 }

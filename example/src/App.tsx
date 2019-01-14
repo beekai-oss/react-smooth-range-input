@@ -19,6 +19,10 @@ class App extends Component {
           </p>
           <div style={{ padding: '50px 20px 20px', width: '50%' }}>
             <Slider value={1} min={1} max={30} />
+            <br />
+            <br />
+            <br />
+            <Slider value={5} min={1} max={30} type="thin" padding={0} hasTickMarks={false} />
           </div>
         </header>
       </div>
