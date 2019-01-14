@@ -20,6 +20,7 @@ const topBottomPadding = 6;
 const delayMsForAnimation = 200;
 const colors = {
   white: '#fff',
+  lightBlue: '#3562cd',
   blue: '#244BA8',
 };
 
@@ -33,6 +34,7 @@ interface Props {
   textBackgroundColor?: string;
   height: number;
   hasTickMarks: boolean;
+  tickColor?: string;
   min: number;
   max: number;
 }
@@ -49,6 +51,7 @@ export class Slider extends React.PureComponent<Props, State> {
     backgroundColor: colors.blue,
     textColor: colors.blue,
     textBackgroundColor: colors.white,
+    tickColor: colors.lightBlue,
     disabled: false,
     height: 40,
     padding: 0,
@@ -253,7 +256,7 @@ export class Slider extends React.PureComponent<Props, State> {
 
   render() {
     const { dragX, showBubble } = this.state;
-    const { height, hasTickMarks, textBackgroundColor, backgroundColor, textColor } = this.props;
+    const { height, hasTickMarks, textBackgroundColor, backgroundColor, textColor, tickColor } = this.props;
 
     this.calculateValueAndUpdateStore(false);
 
@@ -291,7 +294,7 @@ export class Slider extends React.PureComponent<Props, State> {
             textBackgroundColor={textBackgroundColor}
             textColor={textColor}
           />
-          {hasTickMarks && <SliderIndicator color={textBackgroundColor} amount={this.totalStepsNumber} />}
+          {hasTickMarks && <SliderIndicator color={tickColor} amount={this.totalStepsNumber} />}
         </div>
       </>
     );
