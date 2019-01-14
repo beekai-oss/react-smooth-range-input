@@ -128,7 +128,7 @@ export default function Controller({
         play={showBubble}
         {...commonAnimationProps}
         endStyle={{
-          transform: `translateY(-${isThin ? 56 : 46}px) scale(1.3)`,
+          transform: `translateY(-${isThin ? 58 : 48}px) scale(1.3)`,
         }}
         durationSeconds={0.3}
         reverseDurationSeconds={0.1}
