@@ -1,21 +1,22 @@
 export default function preventScrollOnMobile() {
-    let originalOnTouchMove;
+  let originalOnTouchMove;
 
-    const preventAction = (e?: any) => {
-      if (!this.isTouching) return;
-      e.preventDefault();
+  const preventAction = (e?: any) => {
+    // @ts-ignore
+    if (!this.isTouching) return;
+    e.preventDefault();
 
-      return false;
-    };
+    return false;
+  };
 
-    if (!preventAction()) {
-      originalOnTouchMove = document.ontouchmove;
-    }
-
-    document.ontouchmove = preventAction;
-    document.ontouchmove = preventAction; // no joke: only the second one (.ontouchmove) works on mobile safari :)
-
-    return () => {
-      document.ontouchmove = originalOnTouchMove;
-    };
+  if (!preventAction()) {
+    originalOnTouchMove = document.ontouchmove;
   }
+
+  document.ontouchmove = preventAction;
+  document.ontouchmove = preventAction; // no joke: only the second one (.ontouchmove) works on mobile safari :)
+
+  return () => {
+    document.ontouchmove = originalOnTouchMove;
+  };
+}
