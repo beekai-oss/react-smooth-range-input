@@ -38,7 +38,19 @@ export const calculatePosition = (
   return position > maxPositionX ? maxPositionX : position;
 };
 
-export function getRangedPositionX(dragX: number, maxPositionX: number) {
+export function getRangedPositionX({
+  dragX,
+  maxPositionX,
+  padding,
+}: {
+  dragX: number;
+  maxPositionX: number;
+  padding?: number;
+}) {
+  if (padding && dragX <= padding) {
+    return padding;
+  }
+
   if (dragX <= 0) {
     return 0;
   }
@@ -50,8 +62,8 @@ export function getRangedPositionX(dragX: number, maxPositionX: number) {
   return dragX;
 }
 
-export const getMaxScrollDistance = (width: number, buttonSize: number, wrapperOffset: number) =>
-  width - buttonSize - wrapperOffset;
+export const getMaxScrollDistance = (width: number, buttonSize: number, padding: number) =>
+  width - buttonSize - padding;
 
 export const getDistancePerMove = (width: number, numberSteps: number) => width / numberSteps;
 

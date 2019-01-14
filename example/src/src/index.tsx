@@ -50,7 +50,7 @@ export class Slider extends React.PureComponent<Props, State> {
     tickColor: colors.lightBlue,
     disabled: false,
     height: 40,
-    padding: 0,
+    padding: 3,
     hasTickMarks: true,
   };
 
@@ -141,13 +141,15 @@ export class Slider extends React.PureComponent<Props, State> {
     e.stopPropagation();
     this.isTouching = true;
     const { left } = this.wrapperRef.current.getBoundingClientRect();
+    const { padding } = this.props;
 
     this.commonOnStart(e);
     this.setState({
-      dragX: getRangedPositionX(
-        getTouchPosition(e.targetTouches[0].pageX, left, this.buttonSize),
-        this.maxScrollDistance,
-      ),
+      dragX: getRangedPositionX({
+        padding,
+        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.buttonSize),
+        maxPositionX: this.maxScrollDistance,
+      }),
     });
   };
 
@@ -172,21 +174,28 @@ export class Slider extends React.PureComponent<Props, State> {
   onTouchMove: any = (e: TouchEvent) => {
     e.stopPropagation();
     const { left } = this.wrapperRef.current.getBoundingClientRect();
+    const { padding } = this.props;
 
     this.setState({
-      dragX: getRangedPositionX(
-        getTouchPosition(e.targetTouches[0].pageX, left, this.buttonSize),
-        this.maxScrollDistance,
-      ),
+      dragX: getRangedPositionX({
+        padding,
+        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.buttonSize),
+        maxPositionX: this.maxScrollDistance,
+      }),
     });
   };
 
   onMouseMove = (e: MouseEvent) => {
     e.stopPropagation();
     const { dragX } = this.state;
+    const { padding } = this.props;
 
     this.setState({
-      dragX: getRangedPositionX(getMousePosition(dragX, this.clientX, e.clientX), this.maxScrollDistance),
+      dragX: getRangedPositionX({
+        padding,
+        dragX: getMousePosition(dragX, this.clientX, e.clientX),
+        maxPositionX: this.maxScrollDistance,
+      }),
     });
 
     this.clientX = e.clientX;
@@ -196,11 +205,16 @@ export class Slider extends React.PureComponent<Props, State> {
     if (this.touchDevice) return;
     const { left } = e.target.getBoundingClientRect();
     const { x } = findElementXandY(e);
+    const { padding } = this.props;
     this.isControlByKeyBoard = true;
     clearTimeout(this.timer);
 
     this.setState({
-      dragX: getRangedPositionX(getTouchPosition(x, left, this.buttonSize), this.maxScrollDistance),
+      dragX: getRangedPositionX({
+        padding,
+        dragX: getTouchPosition(x, left, this.buttonSize),
+        maxPositionX: this.maxScrollDistance,
+      }),
     });
 
     this.timer = setTimeout(() => {
@@ -211,20 +225,29 @@ export class Slider extends React.PureComponent<Props, State> {
   onKeyEvent = (e: KeyboardEvent) => {
     this.isControlByKeyBoard = true;
     const { dragX } = this.state;
+    const { padding } = this.props;
 
     switch (e.key) {
       case 'ArrowDown':
       case 'ArrowLeft':
         e.preventDefault();
         this.setState({
-          dragX: getRangedPositionX(dragX - this.arrowKeyPerClickDistance, this.maxScrollDistance),
+          dragX: getRangedPositionX({
+            padding,
+            dragX: dragX - this.arrowKeyPerClickDistance,
+            maxPositionX: this.maxScrollDistance,
+          }),
         });
         break;
       case 'ArrowUp':
       case 'ArrowRight':
         e.preventDefault();
         this.setState({
-          dragX: getRangedPositionX(dragX + this.arrowKeyPerClickDistance, this.maxScrollDistance),
+          dragX: getRangedPositionX({
+            padding,
+            dragX: dragX + this.arrowKeyPerClickDistance,
+            maxPositionX: this.maxScrollDistance,
+          }),
         });
         break;
       default:
@@ -235,11 +258,11 @@ export class Slider extends React.PureComponent<Props, State> {
   };
 
   calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
-    const { min, onChange } = this.props;
+    const { min, onChange, padding = 0 } = this.props;
     const { dragX } = this.state;
 
     this.value = calculateDragDistance({
-      dragDistance: dragX,
+      dragDistance: dragX - padding,
       maxPositionX: this.maxScrollDistance,
       totalStepsNumber: this.totalStepsNumber,
       min,
