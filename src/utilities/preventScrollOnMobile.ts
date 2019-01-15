@@ -4,7 +4,7 @@ export default function preventScrollOnMobile() {
   const preventAction = (e?: any) => {
     // @ts-ignore
     if (!this.isTouching) return;
-    e.preventDefault();
+    if (e) e.preventDefault();
 
     return false;
   };

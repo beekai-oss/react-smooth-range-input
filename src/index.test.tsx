@@ -23,4 +23,22 @@ describe('Slider', () => {
       showBubble: false,
     });
   });
+
+  it('should update dragX position when user touch on the bar', () => {
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+
+    tree
+      .find('div')
+      .at(0)
+      .simulate('touchstart', {
+        targetTouches: [{
+          pageX: 0,
+        }]
+      });
+
+    expect(tree.state()).toEqual({
+      dragX: 3,
+      showBubble: true,
+    });
+  });
 });

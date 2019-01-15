@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`preventScrollOnMobile should add preventAction on touch move 1`] = `[Function]`;
