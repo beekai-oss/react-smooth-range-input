@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Animate } from 'react-simple-animate';
-import debounce from 'lodash.debounce';
+import debounce from './utilities/debounce';
 import findElementXandY from './utilities/findElementXandY';
 import {
   calculateDragDistance,
@@ -42,7 +42,7 @@ interface State {
 
 const height = 40;
 
-export class Slider extends React.PureComponent<Props, State> {
+export default class Slider extends React.PureComponent<Props, State> {
   static defaultProps = {
     value: 0,
     onChange: () => {},
@@ -203,7 +203,7 @@ export class Slider extends React.PureComponent<Props, State> {
     this.clientX = e.clientX;
   };
 
-  slideTo = (e: any) => {
+  onClick = (e: any) => {
     if (this.touchDevice) return;
     const { left } = e.target.getBoundingClientRect();
     const { x } = findElementXandY(e);
@@ -279,9 +279,7 @@ export class Slider extends React.PureComponent<Props, State> {
     const { dragX, showBubble } = this.state;
     const { hasTickMarks, textBackgroundColor, backgroundColor, textColor, tickColor, type } = this.props;
     const isThin = type === 'thin';
-
     this.calculateValueAndUpdateStore(false);
-    console.log(hasTickMarks)
 
     return (
       <div
@@ -295,7 +293,7 @@ export class Slider extends React.PureComponent<Props, State> {
           cursor: 'pointer',
         }}
         ref={this.wrapperRef}
-        onClick={this.slideTo}
+        onClick={this.onClick}
         onTouchStart={this.onTouchStart}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onInteractEnd}
