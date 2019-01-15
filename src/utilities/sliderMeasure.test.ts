@@ -1,4 +1,10 @@
-import { calculateDragDistance, calculatePosition, getRangedPositionX } from './sliderMeasure';
+import {
+  calculateDragDistance,
+  calculatePosition,
+  getRangedPositionX,
+  getMaxScrollDistance,
+  getMousePosition,
+} from './sliderMeasure';
 
 describe('calculateDragDistance', () => {
   it('should calculate correctly', () => {
@@ -72,28 +78,48 @@ describe('calculatePosition', () => {
 
 describe('getRangedPositionX', () => {
   it('should get the correct position', () => {
-    expect(getRangedPositionX({
-      dragX: 40,
-      maxPositionX: 100,
-      padding: 30,
-    })).toEqual(40);
+    expect(
+      getRangedPositionX({
+        dragX: 40,
+        maxPositionX: 100,
+        padding: 30,
+      }),
+    ).toEqual(40);
 
-    expect(getRangedPositionX({
-      dragX: 10,
-      maxPositionX: 100,
-      padding: 30,
-    })).toEqual(30);
+    expect(
+      getRangedPositionX({
+        dragX: 10,
+        maxPositionX: 100,
+        padding: 30,
+      }),
+    ).toEqual(30);
 
-    expect(getRangedPositionX({
-      dragX: -20,
-      maxPositionX: 100,
-      padding: 0,
-    })).toEqual(0);
+    expect(
+      getRangedPositionX({
+        dragX: -20,
+        maxPositionX: 100,
+        padding: 0,
+      }),
+    ).toEqual(0);
 
-    expect(getRangedPositionX({
-      dragX: 1220,
-      maxPositionX: 100,
-      padding: 30,
-    })).toEqual(100);
+    expect(
+      getRangedPositionX({
+        dragX: 1220,
+        maxPositionX: 100,
+        padding: 30,
+      }),
+    ).toEqual(100);
+  });
+});
+
+describe('getMaxScrollDistance', () => {
+  it('should calculate the correct distance', () => {
+    expect(getMaxScrollDistance(1000, 20, 20)).toEqual(960);
+  });
+});
+
+describe('getMousePosition', () => {
+  it('should get the position', () => {
+    expect(getMousePosition(30, 30, 20)).toEqual(20);
   });
 });
