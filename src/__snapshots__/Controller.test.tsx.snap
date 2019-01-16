@@ -79,6 +79,9 @@ exports[`Controller should render correct when isThin set to true 1`] = `
     <span
       style={
         Object {
+          "MozUserSelect": "none",
+          "MsUserSelect": "none",
+          "WebkitUserSelect": "none",
           "color": undefined,
           "left": 0,
           "position": "absolute",
@@ -720,6 +723,9 @@ exports[`Controller should render correctly 1`] = `
     <span
       style={
         Object {
+          "MozUserSelect": "none",
+          "MsUserSelect": "none",
+          "WebkitUserSelect": "none",
           "color": undefined,
           "left": 0,
           "position": "absolute",
