@@ -150,6 +150,9 @@ export default function Controller({
                 left: 0,
                 width: `${buttonSize}px`,
                 color: textColor,
+                MozUserSelect: 'none',
+                WebkitUserSelect: 'none',
+                MsUserSelect: 'none',
                 userSelect: 'none',
               }}
             >
