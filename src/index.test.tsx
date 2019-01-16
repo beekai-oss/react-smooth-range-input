@@ -4,7 +4,6 @@ import Slider from './index';
 
 jest.useFakeTimers();
 
-jest.mock('lodash.debounce', () => data => data);
 jest.mock('./utilities/findElementXandY', () => ({
   default: () => ({
     x: 2,

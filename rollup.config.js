@@ -1,22 +1,20 @@
-import flow from 'rollup-plugin-flow';
-import babel from 'rollup-plugin-babel';
-
-const plugins = [
-  flow({
-    // needed for sourcemaps to be properly generated
-    pretty: true
-  }),
-  babel({
-    exclude: 'node_modules/**',
-  }),
-];
+import typescript from 'rollup-plugin-typescript';
 
 export default {
-  input: 'src/index.js',
-  plugins,
-  external: [ 'react' ],
-  output: {
-    file: 'lib/index.js',
-    format: 'cjs'
-  }
+  input: 'src/index.tsx',
+  plugins: [
+    typescript(),
+  ],
+  format: 'iife',
+  external: ['react', 'react-flip-numbers', 'react-simple-animate'],
+  output: [
+    {
+      file: 'dist/index.js',
+      format: 'cjs',
+    },
+    {
+      file: 'dist/index.es.js',
+      format: 'es',
+    },
+  ],
 };

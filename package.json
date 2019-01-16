@@ -1,11 +1,12 @@
 {
   "name": "react-range-slider",
   "version": "0.0.1",
-  "main": "build/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "types": "index.d.ts",
   "scripts": {
-    "clear": "rimraf build/compiled/*",
-    "build": "tsc",
+    "clean": "rimraf dist/*",
+    "build": "rollup -c",
     "watch": "tsc --watch",
     "release": "npm version",
     "postrelease": "yarn publish && git push --follow-tags",
@@ -31,12 +32,13 @@
     "react-test-renderer": "^16.7.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "rollup-plugin-typescript2": "^0.19.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.2",
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8",
     "react-flip-numbers": "^2.1.0",
     "react-simple-animate": "^2.5.0"
   },
