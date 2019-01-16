@@ -166,6 +166,9 @@ describe('Slider', () => {
       left: 2,
     });
 
+    // @ts-ignore:
+    tree.instance().maxScrollDistance = 500;
+
     tree
       .find('div')
       .at(0)
@@ -178,7 +181,7 @@ describe('Slider', () => {
       });
 
     expect(tree.state()).toEqual({
-      dragX: -37,
+      dragX: 101,
       showBubble: false,
     });
   });
