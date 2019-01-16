@@ -185,4 +185,48 @@ describe('Slider', () => {
       showBubble: false,
     });
   });
+
+  it('should update client X and add event listener after onMouseDown', () => {
+    const stopPropagation = jest.fn();
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+
+    // @ts-ignore:
+    tree.instance().onMouseDown({
+      clientX: 2,
+      stopPropagation,
+    });
+
+    // @ts-ignore:
+    expect(tree.instance().clientX).toEqual(2);
+    // @ts-ignore:
+    expect(tree.instance().isControlByKeyBoard).toEqual(false);
+    expect(stopPropagation).toBeCalled();
+    expect(tree.state('showBubble')).toBeTruthy();
+  });
+
+  it('should trigger width recalculation on resize', () => {
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+    // @ts-ignore:
+    tree.instance().wrapperRef.current.getBoundingClientRect = () => ({
+      width: 200,
+    });
+    // @ts-ignore:
+    global.dispatchEvent(new Event('resize'));
+    // @ts-ignore:
+    expect(tree.instance().maxScrollDistance).toEqual(163);
+    // @ts-ignore:
+    expect(tree.instance().arrowKeyPerClickDistance).toEqual(9.055555555555555);
+    expect(tree.state()).toEqual({ dragX: 0, showBubble: false });
+  });
+
+  it('should invoke restoreTouchMove when component un mount', () => {
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+    const restoreTouchMove = jest.fn();
+    // @ts-ignore:
+    tree.instance().restoreTouchMove = restoreTouchMove;
+
+    // @ts-ignore:
+    tree.instance().componentWillUnmount();
+    expect(restoreTouchMove).toBeCalled();
+  });
 });
