@@ -1,11 +1,10 @@
-import typescript from 'rollup-plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 
 export default {
   input: 'src/index.tsx',
   plugins: [
     typescript(),
   ],
-  format: 'iife',
   external: ['react', 'react-flip-numbers', 'react-simple-animate'],
   output: [
     {

@@ -32,15 +32,14 @@
     "react-test-renderer": "^16.7.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.0",
-    "rollup-plugin-typescript": "^1.0.0",
-    "rollup-plugin-typescript2": "^0.19.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.2",
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
     "react-flip-numbers": "^2.1.0",
-    "react-simple-animate": "^2.5.0"
+    "react-simple-animate": "^2.5.0",
+    "rollup-plugin-typescript2": "^0.19.0"
   },
   "peerDependencies": {
     "react": "^16.7.0",
