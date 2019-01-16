@@ -142,4 +142,44 @@ describe('Slider', () => {
     });
     expect(preventDefault).not.toBeCalled();
   });
+
+  it('should update client x when mouse move', () => {
+    const stopPropagation = jest.fn();
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+
+    // @ts-ignore:
+    tree.instance().onMouseMove({
+      stopPropagation,
+      clientX: 20,
+    });
+
+    // @ts-ignore:
+    expect(tree.instance().clientX).toEqual(20);
+    expect(stopPropagation).toBeCalled();
+  });
+
+  it('should update state on touch move', () => {
+    const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
+
+    // @ts-ignore:
+    tree.instance().wrapperRef.current.getBoundingClientRect = () => ({
+      left: 2,
+    });
+
+    tree
+      .find('div')
+      .at(0)
+      .simulate('touchmove', {
+        targetTouches: [
+          {
+            pageX: 120,
+          },
+        ],
+      });
+
+    expect(tree.state()).toEqual({
+      dragX: -37,
+      showBubble: false,
+    });
+  });
 });
