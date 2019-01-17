@@ -1,8 +1,8 @@
 # 🎚 React Smooth Input Range
 
 <p align="center">
-    <a href="https://react-simple-img.herokuapp.com/" target="_blank">
-        <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-smooth-range-intpu/master/example/src/example.gif" alt="Logo" />
+    <a href="https://react-smooth-range-input.now.sh" target="_blank">
+        <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-smooth-range-intpu/master/example/example.gif" alt="https://react-smooth-range-input.now.sh" />
     </a>
 </p>
 
