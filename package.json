@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist/*",
     "build": "rollup -c",
