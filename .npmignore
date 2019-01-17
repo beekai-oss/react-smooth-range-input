@@ -19,3 +19,4 @@ rollup.config.js
 setup.ts
 tsconfig.json
 tsconfig.jest.json
+/coverage
