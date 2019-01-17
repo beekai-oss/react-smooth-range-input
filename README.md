@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://react-smooth-range-input.now.sh" target="_blank">
-        <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-smooth-range-intpu/master/example/example.gif" alt="https://react-smooth-range-input.now.sh" />
+        <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-smooth-range-input/master/example/example.gif" alt="https://react-smooth-range-input.now.sh" />
     </a>
 </p>
 
