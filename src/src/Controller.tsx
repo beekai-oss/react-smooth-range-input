@@ -25,6 +25,7 @@ interface Props {
   backgroundColor?: string;
   textBackgroundColor?: string;
   textColor?: string;
+  isTouchDevice: boolean;
 }
 
 const flipNumberProps = {
@@ -53,13 +54,20 @@ export default function Controller({
   textBackgroundColor,
   textColor,
   isThin,
+  isTouchDevice,
 }: Props) {
   return (
     <div
       tabIndex={0}
-      onClick={e => e.stopPropagation()}
-      onFocus={onFocus}
-      onBlur={onBlur}
+      {...(isTouchDevice
+        ? {}
+        : {
+            onClick: e => e.stopPropagation(),
+            onFocus: onFocus,
+            onBlur: onBlur,
+            onMouseDown: onMouseDown,
+            onMouseUp: onInteractEnd,
+          })}
       style={{
         top: `${(height - buttonSize) / 2}px`,
         position: 'absolute',
@@ -68,8 +76,6 @@ export default function Controller({
         transform: `translateX(${dragX}px)`,
         transition: isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
       }}
-      onMouseDown={onMouseDown}
-      onMouseUp={onInteractEnd}
       role="slider"
       aria-valuenow={value}
       aria-valuemin={2}

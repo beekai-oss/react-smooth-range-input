@@ -11,7 +11,7 @@
 ## Install
 
     $ npm install react-smooth-range-input
-    
+
 ## Example
 
 Navigate into `example` folder and install
@@ -28,3 +28,18 @@ import Slider from 'react-smooth-range-input';
 
 export default () => <Slider value={1} min={1} max={30} />;
 ```
+
+## Props
+
+| Prop                  | Type                       | Required | Description              |
+| :-------------------- | :------------------------- | :------: | :----------------------- |
+| `value`               | number                     |    ✓     | current value            |
+| `min`                 | number                     |    ✓     | min number range         |
+| `max`                 | number                     |    ✓     | max number range         |
+| `onChange`            | Function                   |          | on value change callback |
+| `type`                | string = 'thick' or 'thin' |          |                          |
+| `textColor`           | string                     |          |                          |
+| `textBackgroundColor` | string                     |          |                          |
+| `backgroundColor`     | string                     |          |                          |
+| `hasTickMarks`        | boolean = true             |          |                          |
+| `tickColor`           | string                     |          |                          |
