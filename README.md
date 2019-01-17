@@ -31,15 +31,15 @@ export default () => <Slider value={1} min={1} max={30} />;
 
 ## Props
 
-| Prop                  | Type                       | Required | Description              |
-| :-------------------- | :------------------------- | :------: | :----------------------- |
-| `value`               | number                     |    ✓     | current value            |
-| `min`                 | number                     |    ✓     | min number range         |
-| `max`                 | number                     |    ✓     | max number range         |
-| `onChange`            | Function                   |          | on value change callback |
-| `type`                | string = 'thick' or 'thin' |          |                          |
-| `textColor`           | string                     |          |                          |
-| `textBackgroundColor` | string                     |          |                          |
-| `backgroundColor`     | string                     |          |                          |
-| `hasTickMarks`        | boolean = true             |          |                          |
-| `tickColor`           | string                     |          |                          |
+| Prop                  | Type           | Required | Description                              |
+| :-------------------- | :------------- | :------: | :--------------------------------------- |
+| `value`               | number         |    ✓     | current value                            |
+| `min`                 | number         |    ✓     | min number range                         |
+| `max`                 | number         |    ✓     | max number range                         |
+| `onChange`            | Function       |          | on value change callback                 |
+| `type`                | string         |          | two types: 'thick' and 'thin'            |
+| `textColor`           | string         |          | text color                               |
+| `textBackgroundColor` | string         |          | text background color                    |
+| `backgroundColor`     | string         |          | the bar color                            |
+| `hasTickMarks`        | boolean = true |          | show tick marks only apply to thick type |
+| `tickColor`           | string         |          | tick color                               |
