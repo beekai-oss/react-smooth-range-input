@@ -15,6 +15,7 @@ const props = {
   onMouseDown: () => {},
   showBubble: false,
   value: 20,
+  isTouchDevice: false,
 };
 
 describe('Controller', () => {
