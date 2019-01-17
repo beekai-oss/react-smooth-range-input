@@ -11,6 +11,14 @@
 ## Install
 
     $ npm install react-smooth-range-input
+    
+## Example
+
+Navigate into `example` folder and install
+
+    yarn && yarn start || npm install && npm run start
+
+😍 <a href="https://react-smooth-range-input.now.sh" target="_blank">Check it out.</a>
 
 ## Quickstart
 
