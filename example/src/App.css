@@ -62,7 +62,7 @@
   }
 
   .App-header h3 {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .Github {
@@ -74,6 +74,16 @@
     position: absolute;
     top: 20px;
     right: 20px;
+  }
+}
+
+@media (min-width: 414px) {
+  .App-header h1 {
+    font-size: 27px;
+  }
+
+  .App-header h3 {
+    font-size: 18px;
   }
 }
 

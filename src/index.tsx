@@ -142,6 +142,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   onTouchStart: any = (e: TouchEvent): void => {
     e.stopPropagation();
     this.isTouching = true;
+    this.restoreTouchMove = preventScrollOnMobile.call(this);
     const { left } = this.wrapperRef.current.getBoundingClientRect();
     const { padding } = this.props;
 
