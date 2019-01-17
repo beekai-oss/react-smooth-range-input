@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Slider from './index';
+import isTouchDevice from './utilities/isTouchDevice';
 
 jest.useFakeTimers();
 
@@ -9,9 +10,16 @@ jest.mock('./utilities/findElementXandY', () => ({
     x: 2,
   }),
 }));
+jest.mock('./utilities/isTouchDevice');
 
 describe('Slider', () => {
+  afterAll(() => {
+    jest.resetAllMocks();
+  });
+
   it('should update dragX position when click on the bar', () => {
+    // @ts-ignore:
+    isTouchDevice.mockReturnValueOnce(false);
     const onChange = jest.fn();
     const tree = mount(<Slider value={20} min={2} max={20} onChange={onChange} />);
 
@@ -30,6 +38,8 @@ describe('Slider', () => {
   });
 
   it('should update dragX position when user touch on the bar', () => {
+    // @ts-ignore:
+    isTouchDevice.mockReturnValueOnce(true);
     const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
 
     tree
@@ -50,25 +60,20 @@ describe('Slider', () => {
   });
 
   it('should call on change prop when touch end', () => {
+    // @ts-ignore:
     const onChange = jest.fn();
+    const stopPropagation = jest.fn();
     const tree = mount(<Slider value={20} min={2} max={20} onChange={onChange} />);
 
-    tree
-      .find('div')
-      .at(0)
-      .simulate('touchend', {
-        targetTouches: [
-          {
-            pageX: 0,
-          },
-        ],
-      });
+    // @ts-ignore:
+    tree.instance().onInteractEnd({ stopPropagation });
 
     expect(tree.state()).toEqual({
       dragX: 0,
       showBubble: false,
     });
     expect(onChange).toBeCalled();
+    expect(stopPropagation).toBeCalled();
   });
 
   it('should call on change prop when keyboard ArrowDown or ArrowLeft pressed', () => {
@@ -158,6 +163,8 @@ describe('Slider', () => {
   });
 
   it('should update state on touch move', () => {
+    // @ts-ignore:
+    isTouchDevice.mockReturnValueOnce(true);
     const tree = mount(<Slider value={20} min={2} max={20} onChange={() => {}} />);
 
     // @ts-ignore:

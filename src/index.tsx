@@ -28,7 +28,7 @@ interface Props {
   backgroundColor?: string;
   textColor?: string;
   textBackgroundColor?: string;
-  hasTickMarks?: boolean;
+  hasTickMarks: boolean;
   tickColor?: string;
   type?: 'thick' | 'thin';
   min: number;
@@ -140,7 +140,6 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onTouchStart: any = (e: TouchEvent): void => {
-    e.stopPropagation();
     this.isTouching = true;
     this.restoreTouchMove = preventScrollOnMobile.call(this);
     const { left } = this.wrapperRef.current.getBoundingClientRect();
@@ -154,9 +153,11 @@ export default class Slider extends React.PureComponent<Props, State> {
         maxPositionX: this.maxScrollDistance,
       }),
     });
+    document.addEventListener('touchend', this.onInteractEnd);
   };
 
   onMouseDown: any = (e: MouseEvent): void => {
+    if (this.touchDevice) return;
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onInteractEnd);
     this.commonOnStart(e);
@@ -169,6 +170,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       showBubble: false,
     });
+    document.removeEventListener('touchend', this.onInteractEnd);
     document.removeEventListener('mousemove', this.onMouseMove);
     document.removeEventListener('mouseup', this.onInteractEnd);
     this.calculateValueAndUpdateStore();
@@ -205,7 +207,6 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onClick = (e: any) => {
-    if (this.touchDevice) return;
     const { left } = e.target.getBoundingClientRect();
     const { x } = findElementXandY(e);
     const { padding } = this.props;
@@ -296,13 +297,18 @@ export default class Slider extends React.PureComponent<Props, State> {
           userSelect: 'none',
           cursor: 'pointer',
         }}
+        {...(this.touchDevice
+          ? {
+              onTouchStart: this.onTouchStart,
+              onTouchMove: this.onTouchMove,
+            }
+          : {
+              onClick: this.onClick,
+            })}
         ref={this.wrapperRef}
-        onClick={this.onClick}
-        onTouchStart={this.onTouchStart}
-        onTouchMove={this.onTouchMove}
-        onTouchEnd={this.onInteractEnd}
       >
         <Controller
+          isTouchDevice={this.touchDevice}
           onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
           onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
           buttonSize={this.buttonSize}
