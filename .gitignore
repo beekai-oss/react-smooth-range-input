@@ -64,3 +64,5 @@ typings/
 /lib
 /dist
 .idea/
+/coverage
+.rpt2_cache

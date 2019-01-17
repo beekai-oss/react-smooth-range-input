@@ -1,6 +1,6 @@
 {
-  "name": "react-range-slider",
-  "version": "0.0.1",
+  "name": "react-smooth-range-input",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "index.d.ts",

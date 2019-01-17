@@ -11,3 +11,11 @@ CONTRIBUTING.md
 .eslintrc
 jestConfig.json
 .idea/
+.rpt2_cache/
+/lib
+.coveralls.yml
+jest.config.js
+rollup.config.js
+setup.ts
+tsconfig.json
+tsconfig.jest.json
