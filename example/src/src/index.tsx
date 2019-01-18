@@ -140,10 +140,11 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onTouchStart: any = (e: TouchEvent): void => {
+    const { padding, disabled } = this.props;
+    if (disabled) return;
     this.isTouching = true;
     this.restoreTouchMove = preventScrollOnMobile.call(this);
     const { left } = this.wrapperRef.current.getBoundingClientRect();
-    const { padding } = this.props;
 
     this.commonOnStart(e);
     this.setState({
@@ -207,9 +208,10 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onClick = (e: any) => {
+    const { padding, disabled } = this.props;
+    if (disabled) return;
     const { left } = e.target.getBoundingClientRect();
     const { x } = findElementXandY(e);
-    const { padding } = this.props;
     this.isControlByKeyBoard = true;
     clearTimeout(this.timer);
 
@@ -229,7 +231,8 @@ export default class Slider extends React.PureComponent<Props, State> {
   onKeyEvent = (e: KeyboardEvent) => {
     this.isControlByKeyBoard = true;
     const { dragX } = this.state;
-    const { padding } = this.props;
+    const { padding, disabled } = this.props;
+    if (disabled) return;
 
     switch (e.key) {
       case 'ArrowDown':
@@ -323,6 +326,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           textBackgroundColor={textBackgroundColor}
           textColor={textColor}
           isThin={isThin}
+          disabled={disabled}
         />
         {(hasTickMarks || isThin) && (
           <SliderIndicator

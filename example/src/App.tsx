@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slider from 'react-smooth-range-input';
+import Slider from './src';
 import './App.css';
 
 class App extends Component {
@@ -29,6 +29,10 @@ class App extends Component {
             <br />
             <p>Example B:</p>
             <Slider value={5} min={1} max={30} type="thin" padding={0} hasTickMarks={false} />
+            <br />
+            <br />
+            <br />
+            <Slider value={1} min={1} max={30} disabled />
           </div>
         </header>
       </div>
