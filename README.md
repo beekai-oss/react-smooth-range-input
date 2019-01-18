@@ -49,3 +49,4 @@ export default () => <Slider value={1} min={1} max={30} />;
 | `backgroundColor`     | string         |          | the bar color                            |
 | `hasTickMarks`        | boolean = true |          | show tick marks only apply to thick type |
 | `tickColor`           | string         |          | tick color                               |
+| `disabled`            | boolean        |          | disable the range input                  |
