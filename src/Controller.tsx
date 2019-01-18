@@ -26,6 +26,7 @@ interface Props {
   textBackgroundColor?: string;
   textColor?: string;
   isTouchDevice: boolean;
+  disabled?: boolean;
 }
 
 const flipNumberProps = {
@@ -37,6 +38,7 @@ const flipNumberProps = {
   durationSeconds: 0.4,
   play: true,
   numberStyle: { outline: '1px solid transparent' },
+  disabled: false,
 };
 
 export default function Controller({
@@ -55,6 +57,7 @@ export default function Controller({
   textColor,
   isThin,
   isTouchDevice,
+  disabled,
 }: Props) {
   return (
     <div
@@ -71,7 +74,7 @@ export default function Controller({
       style={{
         top: `${(height - buttonSize) / 2}px`,
         position: 'absolute',
-        cursor: '-webkit-grab',
+        cursor: disabled ? 'not-allowed' : '-webkit-grab',
         fontWeight: 600,
         transform: `translateX(${dragX}px)`,
         transition: isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
