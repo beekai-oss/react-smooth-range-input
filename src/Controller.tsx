@@ -83,19 +83,8 @@ export default function Controller({
       aria-valuenow={value}
       aria-valuemin={2}
       aria-valuemax={30}
-      aria-valuetext="Years of loan"
+      aria-valuetext={value}
     >
-      <input
-        type="range"
-        defaultValue={value.toString()}
-        style={{
-          visibility: 'hidden',
-          width: 0,
-          height: 0,
-          display: 'block',
-          position: 'absolute',
-        }}
-      />
       <Animate
         play={showBubble}
         {...commonAnimationProps}
