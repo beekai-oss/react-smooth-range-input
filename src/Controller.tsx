@@ -83,7 +83,7 @@ export default function Controller({
       aria-valuenow={value}
       aria-valuemin={2}
       aria-valuemax={30}
-      aria-valuetext={value}
+      aria-valuetext={value.toString()}
     >
       <Animate
         play={showBubble}

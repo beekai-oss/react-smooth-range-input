@@ -2,6 +2,7 @@
   "version": 2,
   "name": "React Smooth Range Input",
   "builds": [{ "src": "package.json", "use": "@now/static-build" }],
+  "alias": "react-smooth-range-input",
   "routes": [
     { "src": "^/static/(.*)", "dest": "/static/$1" },
     { "src": "^/favicon.ico", "dest": "/favicon.ico" },

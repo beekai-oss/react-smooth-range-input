@@ -7,8 +7,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <iframe className="GithubStar" src="https://ghbtns.com/github-btn.html?user=bluebill1049&repo=react-smooth-range-input&type=star&count=true&size=large"
-                  frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
+          <iframe
+            className="GithubStar"
+            src="https://ghbtns.com/github-btn.html?user=bluebill1049&repo=react-smooth-range-input&type=star&count=true&size=large"
+            frameBorder="0"
+            scrolling="0"
+            width="160px"
+            height="30px"
+          />
           <a href="https://github.com/bluebill1049/react-smooth-range-input" className="Github">
             <svg viewBox="0 0 496 512" height="30" aria-hidden="true" focusable="false" fill="currentColor">
               <path
@@ -18,9 +24,7 @@ class App extends Component {
             </svg>
           </a>
           <h1>🎚 React Smooth Input Range</h1>
-          <h3>
-            Making input range smooth and elegant
-          </h3>
+          <h3>Making input range smooth and elegant</h3>
           <div className="App-slider">
             <p>Example A:</p>
             <Slider value={1} min={1} max={30} />
@@ -29,10 +33,6 @@ class App extends Component {
             <br />
             <p>Example B:</p>
             <Slider value={5} min={1} max={30} type="thin" padding={0} hasTickMarks={false} />
-            <br />
-            <br />
-            <br />
-            <Slider value={1} min={1} max={30} disabled />
           </div>
         </header>
       </div>

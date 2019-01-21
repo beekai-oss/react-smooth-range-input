@@ -5,7 +5,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
   aria-valuemax={30}
   aria-valuemin={2}
   aria-valuenow={20}
-  aria-valuetext="Years of loan"
+  aria-valuetext="20"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -24,19 +24,6 @@ exports[`Controller should render correct when isThin set to true 1`] = `
   }
   tabIndex={0}
 >
-  <input
-    defaultValue="20"
-    style={
-      Object {
-        "display": "block",
-        "height": 0,
-        "position": "absolute",
-        "visibility": "hidden",
-        "width": 0,
-      }
-    }
-    type="range"
-  />
   <svg
     height="64px"
     style={
@@ -645,7 +632,7 @@ exports[`Controller should render correctly 1`] = `
   aria-valuemax={30}
   aria-valuemin={2}
   aria-valuenow={20}
-  aria-valuetext="Years of loan"
+  aria-valuetext="20"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -664,19 +651,6 @@ exports[`Controller should render correctly 1`] = `
   }
   tabIndex={0}
 >
-  <input
-    defaultValue="20"
-    style={
-      Object {
-        "display": "block",
-        "height": 0,
-        "position": "absolute",
-        "visibility": "hidden",
-        "width": 0,
-      }
-    }
-    type="range"
-  />
   <svg
     height="64px"
     style={
