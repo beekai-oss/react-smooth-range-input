@@ -35,6 +35,7 @@ interface Props {
   shouldPopOnTouch?: boolean;
   shouldDisplayValue?: boolean;
   controller?: any;
+  backgroundHeight?: number,
 }
 
 interface State {
@@ -57,6 +58,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     shouldPopOnTouch: true,
     shouldDisplayValue: true,
     controller: null,
+    backgroundHeight: 40,
   };
 
   state = {
@@ -74,11 +76,9 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   arrowKeyPerClickDistance = 0;
 
-  height = 40;
+  buttonHeight = (this.props.backgroundHeight || 0) - (this.props.padding || 0) * 2;
 
-  buttonHeight = this.height - (this.props.padding || 0) * 2;
-
-  buttonWidth = this.height - (this.props.padding || 0) * 2;
+  buttonWidth = (this.props.backgroundHeight || 0) - (this.props.padding || 0) * 2;
 
   clientX = 0;
 
@@ -102,7 +102,6 @@ export default class Slider extends React.PureComponent<Props, State> {
 
     if (this.controllerRef && this.controllerRef.current) {
       const controllerRef = this.controllerRef.current.getBoundingClientRect();
-      this.height = controllerRef.height - padding * 2;
       this.buttonWidth = controllerRef.width;
       this.buttonHeight = controllerRef.height;
     }
@@ -308,6 +307,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       controller,
       max,
       min,
+      backgroundHeight = 0,
     } = this.props;
     const isThin = type === 'thin';
     this.calculateValueAndUpdateStore(false);
@@ -315,7 +315,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     return (
       <div
         style={{
-          height: `${this.height}px`,
+          height: `${backgroundHeight}px`,
           width: '100%',
           borderRadius: '4px',
           ...(isThin ? { paddingTop: '15px' } : { background: backgroundColor }),
@@ -340,7 +340,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           isTouchDevice={this.touchDevice}
           onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
           onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
-          height={this.height}
+          height={backgroundHeight}
           buttonHeight={this.buttonHeight}
           dragX={dragX}
           showBubble={showBubble && !!shouldPopOnTouch}
