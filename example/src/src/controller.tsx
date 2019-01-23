@@ -13,7 +13,7 @@ const commonAnimationProps = {
 interface Props {
   onFocus: () => void;
   onBlur: () => void;
-  buttonHeight: number;
+  controllerHeight: number;
   height: number;
   value: number;
   dragX: number;
@@ -49,7 +49,7 @@ export default React.forwardRef(function Controller(
   {
     onFocus,
     onBlur,
-    buttonHeight,
+    controllerHeight,
     height,
     dragX,
     showBubble,
@@ -70,10 +70,10 @@ export default React.forwardRef(function Controller(
   }: Props,
   ref: any,
 ) {
-  let top = (isThin ? height - buttonHeight : height - buttonHeight) / 2;
+  let top = (isThin ? height - controllerHeight : height - controllerHeight) / 2;
 
   if (controller) {
-    top = isThin ? (height - buttonHeight) / 2 : height - buttonHeight;
+    top = isThin ? (height - controllerHeight) / 2 : height - controllerHeight;
   }
 
   return (
@@ -125,7 +125,7 @@ export default React.forwardRef(function Controller(
               }}
               x="0px"
               y="0px"
-              width={`${buttonHeight}px`}
+              width={`${controllerHeight}px`}
               height="64px"
               viewBox="0 0 40 64"
             >
@@ -159,8 +159,8 @@ export default React.forwardRef(function Controller(
             <div
               style={{
                 background: textBackgroundColor,
-                height: `${buttonHeight}px`,
-                width: `${buttonHeight}px`,
+                height: `${controllerHeight}px`,
+                width: `${controllerHeight}px`,
                 borderRadius: '50%',
                 position: 'absolute',
                 ...style,
@@ -172,7 +172,7 @@ export default React.forwardRef(function Controller(
                     position: 'absolute',
                     top: '10px',
                     left: 0,
-                    width: `${buttonHeight}px`,
+                    width: `${controllerHeight}px`,
                     color: textColor,
                   }}
                 >

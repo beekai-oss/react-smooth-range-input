@@ -23,7 +23,7 @@ class App extends Component {
             <p>With thin line through</p>
             <Slider value={5} min={1} max={30} backgroundHeight={10} hasTickMarks={false} />
             <p>Without the pop up</p>
-            <Slider value={8} min={1} max={30} backgroundHeight={10} hasTickMarks={false} shouldPopOnTouch={false} />
+            <Slider value={8} min={1} max={30} backgroundHeight={10} hasTickMarks={false} shouldAnimateOnTouch={false} />
             <p>With the text value</p>
             <Slider
               value={2}
@@ -31,7 +31,7 @@ class App extends Component {
               max={30}
               type="thin"
               hasTickMarks={false}
-              shouldPopOnTouch={false}
+              shouldAnimateOnTouch={false}
               shouldDisplayValue={false}
             />
             <p>Disabled Example</p>

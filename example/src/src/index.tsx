@@ -20,23 +20,24 @@ import colors from './constants/colors';
 const delayMsForAnimation = 200;
 
 interface Props {
+  min: number;
+  max: number;
   value?: number;
+  hasTickMarks?: boolean;
   onChange?: (number) => void;
   disabled?: boolean;
   padding?: number;
   backgroundColor?: string;
   textColor?: string;
   textBackgroundColor?: string;
-  hasTickMarks: boolean;
   tickColor?: string;
-  min: number;
-  max: number;
-  shouldPopOnTouch?: boolean;
+  controller?: ({ ref: any, value: number }) => React.ReactNode;
+  shouldAnimateOnTouch?: boolean;
   shouldDisplayValue?: boolean;
-  controller?: any;
+  controllerWidth?: number;
+  controllerHeight?: number;
   backgroundHeight?: number;
-  buttonWidth?: number;
-  buttonHeight?: number;
+  backgroundStyle: { string: number | string };
 }
 
 interface State {
@@ -56,12 +57,13 @@ export default class Slider extends React.PureComponent<Props, State> {
     padding: 3,
     hasTickMarks: true,
     type: 'thick',
-    shouldPopOnTouch: true,
+    shouldAnimateOnTouch: true,
     shouldDisplayValue: true,
     controller: null,
     backgroundHeight: 40,
-    buttonWidth: 34,
-    buttonHeight: 34,
+    controllerWidth: 34,
+    controllerHeight: 34,
+    backgroundStyle: {},
   };
 
   state = {
@@ -79,9 +81,9 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   arrowKeyPerClickDistance = 0;
 
-  buttonHeight = this.props.buttonHeight || 0;
+  controllerHeight = this.props.controllerHeight || 0;
 
-  buttonWidth = this.props.buttonWidth || 0;
+  controllerWidth = this.props.controllerWidth || 0;
 
   clientX = 0;
 
@@ -95,7 +97,7 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   totalStepsNumber: number = this.props.max - this.props.min;
 
-  calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.buttonHeight);
+  calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.controllerHeight);
 
   restoreTouchMove = () => {};
 
@@ -105,11 +107,11 @@ export default class Slider extends React.PureComponent<Props, State> {
 
     if (this.controllerRef && this.controllerRef.current) {
       const controllerRef = this.controllerRef.current.getBoundingClientRect();
-      this.buttonWidth = controllerRef.width;
-      this.buttonHeight = controllerRef.height;
+      this.controllerWidth = controllerRef.width;
+      this.controllerHeight = controllerRef.height;
     }
 
-    this.maxScrollDistance = getMaxScrollDistance(width, this.buttonWidth, padding!);
+    this.maxScrollDistance = getMaxScrollDistance(width, this.controllerWidth, padding!);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
     window.addEventListener('resize', this.onResize);
@@ -137,7 +139,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   onResize = debounce(() => {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
     const { min, padding } = this.props;
-    this.maxScrollDistance = getMaxScrollDistance(width, this.buttonWidth, padding!);
+    this.maxScrollDistance = getMaxScrollDistance(width, this.controllerWidth, padding!);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
 
     this.setState({
@@ -169,7 +171,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       dragX: getRangedPositionX({
         padding,
-        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.buttonWidth),
+        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.controllerWidth),
         maxPositionX: this.maxScrollDistance,
       }),
     });
@@ -207,7 +209,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       dragX: getRangedPositionX({
         padding,
-        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.buttonWidth),
+        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.controllerWidth),
         maxPositionX: this.maxScrollDistance,
       }),
     });
@@ -241,7 +243,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       dragX: getRangedPositionX({
         padding,
-        dragX: getTouchPosition(x, left, this.buttonWidth),
+        dragX: getTouchPosition(x, left, this.controllerWidth),
         maxPositionX: this.maxScrollDistance,
       }),
     });
@@ -304,14 +306,15 @@ export default class Slider extends React.PureComponent<Props, State> {
       textColor,
       tickColor,
       disabled,
-      shouldPopOnTouch,
+      shouldAnimateOnTouch,
       shouldDisplayValue,
       controller,
       max,
       min,
       backgroundHeight = 0,
+      backgroundStyle = {},
     } = this.props;
-    const isThin = backgroundHeight < this.buttonHeight;
+    const isThin = backgroundHeight < this.controllerHeight;
     this.calculateValueAndUpdateStore(false);
 
     return (
@@ -321,13 +324,14 @@ export default class Slider extends React.PureComponent<Props, State> {
           width: '100%',
           borderRadius: '4px',
           background: backgroundColor,
-          ...(isThin ? { marginTop: `${this.buttonHeight - backgroundHeight}px` } : {}),
+          ...(isThin ? { marginTop: `${this.controllerHeight - backgroundHeight}px` } : {}),
           position: 'relative',
           MozUserSelect: 'none',
           WebkitUserSelect: 'none',
           msUserSelect: 'none',
           userSelect: 'none',
           ...(disabled ? { opacity: 0.5, cursor: 'not-allowed' } : { cursor: 'pointer' }),
+          ...backgroundStyle,
         }}
         {...(this.touchDevice
           ? {
@@ -344,9 +348,9 @@ export default class Slider extends React.PureComponent<Props, State> {
           onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
           onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
           height={backgroundHeight}
-          buttonHeight={this.buttonHeight}
+          controllerHeight={this.controllerHeight}
           dragX={dragX}
-          showBubble={showBubble && !!shouldPopOnTouch}
+          showBubble={showBubble && !!shouldAnimateOnTouch}
           isControlByKeyBoard={this.isControlByKeyBoard}
           value={this.value}
           shouldDisplayValue={shouldDisplayValue}
