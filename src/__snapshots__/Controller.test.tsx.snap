@@ -15,11 +15,12 @@ exports[`Controller should render correct when isThin set to true 1`] = `
   style={
     Object {
       "cursor": "-webkit-grab",
-      "fontWeight": 600,
+      "height": -10,
       "position": "absolute",
-      "top": "5px",
+      "top": "10px",
       "transform": "translateX(2px)",
       "transition": "0s all",
+      "width": 0,
     }
   }
   tabIndex={0}
@@ -36,7 +37,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
       }
     }
     viewBox="0 0 40 64"
-    width="10px"
+    width="0px"
     x="0px"
     y="0px"
   >
@@ -55,14 +56,576 @@ exports[`Controller should render correct when isThin set to true 1`] = `
       Object {
         "background": undefined,
         "borderRadius": "50%",
-        "height": "10px",
+        "height": "0px",
         "position": "absolute",
         "transform": "translateY(0)",
         "transition": "all 0.1s cubic-bezier(0.86, 0, 0.07, 1) 0s",
-        "width": "10px",
+        "width": "0px",
       }
     }
-  />
+  >
+    <span
+      style={
+        Object {
+          "color": undefined,
+          "fontWeight": 600,
+          "left": 0,
+          "position": "absolute",
+          "top": "10px",
+          "width": "0px",
+        }
+      }
+    >
+      <section
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "display": "inline-block",
+              "height": 14,
+              "overflow": "hidden",
+              "perspective": 370,
+              "textAlign": "left",
+              "width": "9px",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "height": "100%",
+                "position": "absolute",
+                "transformStyle": "preserve-3d",
+                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+              }
+            }
+          >
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(0deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              0
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(36deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              1
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(72deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              2
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(108deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              3
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(144deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              4
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(180deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              5
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(216deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              6
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(252deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              7
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(288deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              8
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(324deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              9
+            </span>
+          </span>
+          <span
+            data={1}
+            style={
+              Object {
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "background": "white",
+                "color": "black",
+                "display": "flex",
+                "fontSize": "13px",
+                "height": 14,
+                "justifyContent": "center",
+                "left": "0px",
+                "lineHeight": "14px",
+                "outline": "1px solid transparent",
+                "position": "absolute",
+                "textAlign": "center",
+                "transform": "rotateX(0deg) translateZ(21px)",
+                "visibility": "hidden",
+                "width": "9px",
+              }
+            }
+          >
+            2
+          </span>
+        </span>
+        <span
+          style={
+            Object {
+              "display": "inline-block",
+              "height": 14,
+              "overflow": "hidden",
+              "perspective": 370,
+              "textAlign": "left",
+              "width": "9px",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "height": "100%",
+                "position": "absolute",
+                "transformStyle": "preserve-3d",
+                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+              }
+            }
+          >
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(0deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              0
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(36deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              1
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(72deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              2
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(108deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              3
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(144deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              4
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(180deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              5
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(216deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              6
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(252deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              7
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(288deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              8
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(324deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              9
+            </span>
+          </span>
+          <span
+            data={0}
+            style={
+              Object {
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "background": "white",
+                "color": "black",
+                "display": "flex",
+                "fontSize": "13px",
+                "height": 14,
+                "justifyContent": "center",
+                "left": "0px",
+                "lineHeight": "14px",
+                "outline": "1px solid transparent",
+                "position": "absolute",
+                "textAlign": "center",
+                "transform": "rotateX(0deg) translateZ(21px)",
+                "visibility": "hidden",
+                "width": "9px",
+              }
+            }
+          >
+            0
+          </span>
+        </span>
+      </section>
+    </span>
+  </div>
 </div>
 `;
 
@@ -81,11 +644,12 @@ exports[`Controller should render correctly 1`] = `
   style={
     Object {
       "cursor": "-webkit-grab",
-      "fontWeight": 600,
+      "height": -10,
       "position": "absolute",
-      "top": "5px",
+      "top": "10px",
       "transform": "translateX(2px)",
       "transition": "0s all",
+      "width": 0,
     }
   }
   tabIndex={0}
@@ -102,7 +666,7 @@ exports[`Controller should render correctly 1`] = `
       }
     }
     viewBox="0 0 40 64"
-    width="10px"
+    width="0px"
     x="0px"
     y="0px"
   >
@@ -121,13 +685,575 @@ exports[`Controller should render correctly 1`] = `
       Object {
         "background": undefined,
         "borderRadius": "50%",
-        "height": "10px",
+        "height": "0px",
         "position": "absolute",
         "transform": "translateY(0)",
         "transition": "all 0.1s cubic-bezier(0.86, 0, 0.07, 1) 0s",
-        "width": "10px",
+        "width": "0px",
       }
     }
-  />
+  >
+    <span
+      style={
+        Object {
+          "color": undefined,
+          "fontWeight": 600,
+          "left": 0,
+          "position": "absolute",
+          "top": "10px",
+          "width": "0px",
+        }
+      }
+    >
+      <section
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "display": "inline-block",
+              "height": 14,
+              "overflow": "hidden",
+              "perspective": 370,
+              "textAlign": "left",
+              "width": "9px",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "height": "100%",
+                "position": "absolute",
+                "transformStyle": "preserve-3d",
+                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+              }
+            }
+          >
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(0deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              0
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(36deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              1
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(72deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              2
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(108deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              3
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(144deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              4
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(180deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              5
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(216deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              6
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(252deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              7
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(288deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              8
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(324deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              9
+            </span>
+          </span>
+          <span
+            data={1}
+            style={
+              Object {
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "background": "white",
+                "color": "black",
+                "display": "flex",
+                "fontSize": "13px",
+                "height": 14,
+                "justifyContent": "center",
+                "left": "0px",
+                "lineHeight": "14px",
+                "outline": "1px solid transparent",
+                "position": "absolute",
+                "textAlign": "center",
+                "transform": "rotateX(0deg) translateZ(21px)",
+                "visibility": "hidden",
+                "width": "9px",
+              }
+            }
+          >
+            2
+          </span>
+        </span>
+        <span
+          style={
+            Object {
+              "display": "inline-block",
+              "height": 14,
+              "overflow": "hidden",
+              "perspective": 370,
+              "textAlign": "left",
+              "width": "9px",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "height": "100%",
+                "position": "absolute",
+                "transformStyle": "preserve-3d",
+                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+              }
+            }
+          >
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(0deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              0
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(36deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              1
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(72deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              2
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(108deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              3
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(144deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              4
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(180deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              5
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(216deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              6
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(252deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              7
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(288deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              8
+            </span>
+            <span
+              style={
+                Object {
+                  "WebkitFontSmoothing": "antialiased",
+                  "alignItems": "center",
+                  "background": "white",
+                  "color": "black",
+                  "display": "flex",
+                  "fontSize": "13px",
+                  "height": 14,
+                  "justifyContent": "center",
+                  "lineHeight": "14px",
+                  "outline": "1px solid transparent",
+                  "position": "absolute",
+                  "textAlign": "center",
+                  "transform": "rotateX(324deg) translateZ(21px)",
+                  "width": "9px",
+                }
+              }
+            >
+              9
+            </span>
+          </span>
+          <span
+            data={0}
+            style={
+              Object {
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "background": "white",
+                "color": "black",
+                "display": "flex",
+                "fontSize": "13px",
+                "height": 14,
+                "justifyContent": "center",
+                "left": "0px",
+                "lineHeight": "14px",
+                "outline": "1px solid transparent",
+                "position": "absolute",
+                "textAlign": "center",
+                "transform": "rotateX(0deg) translateZ(21px)",
+                "visibility": "hidden",
+                "width": "9px",
+              }
+            }
+          >
+            0
+          </span>
+        </span>
+      </section>
+    </span>
+  </div>
 </div>
 `;

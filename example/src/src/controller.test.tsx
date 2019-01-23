@@ -16,6 +16,8 @@ const props = {
   showBubble: false,
   value: 20,
   isTouchDevice: false,
+  max: 20,
+  min: 0,
 };
 
 describe('Controller', () => {

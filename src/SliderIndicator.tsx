@@ -5,21 +5,21 @@ interface Props {
   amount: number;
   isThin: boolean;
   color?: string;
-  backgroundColor?: string;
+  barColor?: string;
   hasTickMarks?: boolean;
 }
 
-export default ({ amount, color, isThin, backgroundColor, hasTickMarks }: Props) => (
+export default ({ amount, color, isThin, barColor, hasTickMarks }: Props) => (
   <div
     style={{
       display: 'flex',
       width: '100%',
       justifyContent: 'space-around',
       minHeight: '10px',
-      ...(isThin ? { background: backgroundColor, borderRadius: '4px' } : { paddingTop: '15px' }),
+      ...(isThin ? { background: barColor, borderRadius: '4px' } : { paddingTop: '15px' }),
     }}
   >
-    {hasTickMarks && createArrayWithNumbers(amount).map(index => (
+    {hasTickMarks && createArrayWithNumbers(amount > 50 ? 50 : amount).map(index => (
       <span
         style={{
           height: '10px',

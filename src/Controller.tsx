@@ -13,7 +13,8 @@ const commonAnimationProps = {
 interface Props {
   onFocus: () => void;
   onBlur: () => void;
-  buttonHeight: number;
+  controllerHeight?: number;
+  controllerWidth?: number;
   height: number;
   value: number;
   dragX: number;
@@ -22,13 +23,13 @@ interface Props {
   isThin: boolean;
   onMouseDown: (MouseEvent) => void;
   onInteractEnd: (Event) => void;
-  backgroundColor?: string;
+  barColor?: string;
   textBackgroundColor?: string;
   textColor?: string;
   isTouchDevice: boolean;
   disabled?: boolean;
   shouldDisplayValue?: boolean;
-  controller?: any;
+  customController?: any;
   max: number,
   min: number,
 }
@@ -49,7 +50,8 @@ export default React.forwardRef(function Controller(
   {
     onFocus,
     onBlur,
-    buttonHeight,
+    controllerHeight = 0,
+    controllerWidth = 0,
     height,
     dragX,
     showBubble,
@@ -57,23 +59,23 @@ export default React.forwardRef(function Controller(
     value,
     onMouseDown,
     onInteractEnd,
-    backgroundColor,
+    barColor,
     textBackgroundColor,
     textColor,
     isThin,
     isTouchDevice,
     disabled,
     shouldDisplayValue,
-    controller,
+    customController,
     max,
     min,
   }: Props,
   ref: any,
 ) {
-  let top = (isThin ? height - buttonHeight : height - buttonHeight) / 2;
+  let top = (isThin ? height - controllerHeight : height - controllerHeight) / 2;
 
-  if (controller) {
-    top = isThin ? height - buttonHeight + 10 : height - buttonHeight;
+  if (customController) {
+    top = isThin ? (height - controllerHeight) / 2 : height - controllerHeight;
   }
 
   return (
@@ -92,9 +94,10 @@ export default React.forwardRef(function Controller(
         top: `${top}px`,
         position: 'absolute',
         cursor: disabled ? 'not-allowed' : '-webkit-grab',
-        fontWeight: 600,
         transform: `translateX(${dragX}px)`,
         transition: isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
+        width: controllerWidth,
+        height: controllerHeight - 10,
       }}
       role="slider"
       aria-valuenow={value}
@@ -102,7 +105,7 @@ export default React.forwardRef(function Controller(
       aria-valuemax={max}
       aria-valuetext={value.toString()}
     >
-      {!controller && (
+      {!customController && (
         <Animate
           play={showBubble}
           {...commonAnimationProps}
@@ -125,14 +128,14 @@ export default React.forwardRef(function Controller(
               }}
               x="0px"
               y="0px"
-              width={`${buttonHeight}px`}
+              width={`${controllerHeight}px`}
               height="64px"
               viewBox="0 0 40 64"
             >
               <path
                 style={{
                   transition: '0.3s all',
-                  fill: backgroundColor,
+                  fill: barColor,
                 }}
                 d={showBubble ? bubbleWithTail : bubble}
               />
@@ -149,9 +152,9 @@ export default React.forwardRef(function Controller(
         }}
         durationSeconds={0.3}
         reverseDurationSeconds={0.1}
-        render={({ style }) => {
-          return controller ? (
-            controller({
+        render={({ style }) =>
+          customController ? (
+            customController({
               ref,
               value,
             })
@@ -159,8 +162,8 @@ export default React.forwardRef(function Controller(
             <div
               style={{
                 background: textBackgroundColor,
-                height: `${buttonHeight}px`,
-                width: `${buttonHeight}px`,
+                height: `${controllerHeight}px`,
+                width: `${controllerHeight}px`,
                 borderRadius: '50%',
                 position: 'absolute',
                 ...style,
@@ -172,16 +175,17 @@ export default React.forwardRef(function Controller(
                     position: 'absolute',
                     top: '10px',
                     left: 0,
-                    width: `${buttonHeight}px`,
+                    width: `${controllerHeight}px`,
                     color: textColor,
+                    fontWeight: 600,
                   }}
                 >
                   <FlipNumbers {...flipNumberProps} numbers={value.toString()} />
                 </span>
               )}
             </div>
-          );
-        }}
+          )
+        }
       />
     </div>
   );

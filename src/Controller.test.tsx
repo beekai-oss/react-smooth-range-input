@@ -19,6 +19,7 @@ const props = {
   max: 30,
   min: 0,
   buttonHeight: 10,
+  shouldDisplayValue: true,
 };
 
 describe('Controller', () => {

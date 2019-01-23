@@ -17,25 +17,27 @@ import isTouchDevice from './utilities/isTouchDevice';
 import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 import colors from './constants/colors';
 
-const topBottomPadding = 6;
 const delayMsForAnimation = 200;
 
 interface Props {
+  min: number;
+  max: number;
   value?: number;
+  hasTickMarks?: boolean;
   onChange?: (number) => void;
   disabled?: boolean;
   padding?: number;
-  backgroundColor?: string;
+  barColor?: string;
   textColor?: string;
   textBackgroundColor?: string;
-  hasTickMarks: boolean;
   tickColor?: string;
-  type?: 'thick' | 'thin';
-  min: number;
-  max: number;
-  shouldPopOnTouch?: boolean;
+  customController?: ({ ref: any, value: number }) => React.ReactNode;
+  shouldAnimateOnTouch?: boolean;
   shouldDisplayValue?: boolean;
-  controller?: any;
+  controllerWidth?: number;
+  controllerHeight?: number;
+  barHeight?: number;
+  barStyle: { string: number | string };
 }
 
 interface State {
@@ -47,17 +49,20 @@ export default class Slider extends React.PureComponent<Props, State> {
   static defaultProps = {
     value: 0,
     onChange: () => {},
-    backgroundColor: colors.blue,
+    barColor: colors.blue,
     textColor: colors.blue,
     textBackgroundColor: colors.white,
     tickColor: colors.lightBlue,
     disabled: false,
     padding: 3,
     hasTickMarks: true,
-    type: 'thick',
-    shouldPopOnTouch: true,
+    shouldAnimateOnTouch: true,
     shouldDisplayValue: true,
     customController: null,
+    controllerWidth: 34,
+    controllerHeight: 34,
+    barHeight: 40,
+    barStyle: {},
   };
 
   state = {
@@ -71,15 +76,15 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   touchDevice: boolean = isTouchDevice();
 
+  controllerRef: any = React.createRef();
+
   maxScrollDistance = 0;
 
   arrowKeyPerClickDistance = 0;
 
-  height = 40;
+  controllerHeight = this.props.controllerHeight || 0;
 
-  buttonHeight = this.height - topBottomPadding;
-
-  buttonWidth = this.height - topBottomPadding;
+  controllerWidth = this.props.controllerWidth || 0;
 
   clientX = 0;
 
@@ -89,26 +94,23 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   timer: any;
 
-  controllerRef: any = React.createRef();
-
   totalStepsNumber: number = this.props.max - this.props.min;
 
-  calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.buttonHeight);
+  calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.controllerHeight);
 
   restoreTouchMove = () => {};
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { value, min, padding } = this.props;
+    const { value, min, padding = 0 } = this.props;
 
     if (this.controllerRef && this.controllerRef.current) {
-      const controllerRef = this.controllerRef.current.getBoundingClientRect();
-      this.height = controllerRef.height;
-      this.buttonWidth = controllerRef.width;
-      this.buttonHeight = controllerRef.height;
+      const { width: controllerWidth, height: controllerHeight } = this.controllerRef.current.getBoundingClientRect();
+      this.controllerWidth = controllerWidth;
+      this.controllerHeight = controllerHeight;
     }
 
-    this.maxScrollDistance = getMaxScrollDistance(width, this.buttonWidth, padding!);
+    this.maxScrollDistance = getMaxScrollDistance(width, this.controllerWidth, padding!);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
     this.restoreTouchMove = preventScrollOnMobile.call(this);
     window.addEventListener('resize', this.onResize);
@@ -136,7 +138,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   onResize = debounce(() => {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
     const { min, padding } = this.props;
-    this.maxScrollDistance = getMaxScrollDistance(width, this.buttonWidth, padding!);
+    this.maxScrollDistance = getMaxScrollDistance(width, this.controllerWidth, padding!);
     this.arrowKeyPerClickDistance = getDistancePerMove(this.maxScrollDistance, this.totalStepsNumber);
 
     this.setState({
@@ -168,7 +170,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       dragX: getRangedPositionX({
         padding,
-        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.buttonWidth),
+        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.controllerWidth),
         maxPositionX: this.maxScrollDistance,
       }),
     });
@@ -176,9 +178,9 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onMouseDown: any = (e: MouseEvent): void => {
-    const { disabled } = this.props;
     if (this.touchDevice) return;
-    if (disabled) return;
+    if (this.props.disabled) return;
+
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onInteractEnd);
     this.commonOnStart(e);
@@ -206,7 +208,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       dragX: getRangedPositionX({
         padding,
-        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.buttonWidth),
+        dragX: getTouchPosition(e.targetTouches[0].pageX, left, this.controllerWidth),
         maxPositionX: this.maxScrollDistance,
       }),
     });
@@ -232,6 +234,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   onClick = (e: any) => {
     const { padding, disabled } = this.props;
     if (disabled) return;
+
     const { left } = e.target.getBoundingClientRect();
     const { x } = findElementXandY(e);
     this.isControlByKeyBoard = true;
@@ -240,7 +243,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       dragX: getRangedPositionX({
         padding,
-        dragX: getTouchPosition(x, left, this.buttonWidth),
+        dragX: getTouchPosition(x, left, this.controllerWidth),
         maxPositionX: this.maxScrollDistance,
       }),
     });
@@ -254,39 +257,22 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.isControlByKeyBoard = true;
     const { dragX } = this.state;
     const { padding, disabled } = this.props;
-    if (disabled) return;
+    if (disabled || !['ArrowDown', 'ArrowLeft', 'ArrowUp', 'ArrowRight'].includes(e.key)) return;
 
-    switch (e.key) {
-      case 'ArrowDown':
-      case 'ArrowLeft':
-        e.preventDefault();
-        this.setState({
-          dragX: getRangedPositionX({
-            padding,
-            dragX: dragX - this.arrowKeyPerClickDistance,
-            maxPositionX: this.maxScrollDistance,
-          }),
-        });
-        break;
-      case 'ArrowUp':
-      case 'ArrowRight':
-        e.preventDefault();
-        this.setState({
-          dragX: getRangedPositionX({
-            padding,
-            dragX: dragX + this.arrowKeyPerClickDistance,
-            maxPositionX: this.maxScrollDistance,
-          }),
-        });
-        break;
-      default:
-        break;
-    }
+    e.preventDefault();
+    const isPressedLeft = ['ArrowUp', 'ArrowRight'].includes(e.key);
+    this.setState({
+      dragX: getRangedPositionX({
+        padding,
+        dragX: isPressedLeft ? dragX + this.arrowKeyPerClickDistance : dragX - this.arrowKeyPerClickDistance,
+        maxPositionX: this.maxScrollDistance,
+      }),
+    });
 
     this.calculateValueAndUpdateStore();
   };
 
-  calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
+  calculateValueAndUpdateStore(shouldTriggerOnChange: boolean = true) {
     const { min, onChange, padding = 0 } = this.props;
     const { dragX } = this.state;
 
@@ -297,7 +283,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       min,
     });
 
-    if (isUpdateStore && onChange) {
+    if (shouldTriggerOnChange && onChange) {
       onChange(this.value);
     }
   }
@@ -307,33 +293,36 @@ export default class Slider extends React.PureComponent<Props, State> {
     const {
       hasTickMarks,
       textBackgroundColor,
-      backgroundColor,
+      barColor,
       textColor,
       tickColor,
-      type,
       disabled,
-      shouldPopOnTouch,
+      shouldAnimateOnTouch,
       shouldDisplayValue,
-      controller,
+      customController,
       max,
       min,
+      barHeight = 0,
+      barStyle = {},
     } = this.props;
-    const isThin = type === 'thin';
+    const isThin = barHeight < this.controllerHeight;
     this.calculateValueAndUpdateStore(false);
 
     return (
       <div
         style={{
-          height: `${this.height}px`,
+          height: `${barHeight}px`,
           width: '100%',
           borderRadius: '4px',
-          ...(isThin ? { paddingTop: '15px' } : { background: backgroundColor }),
+          background: barColor,
+          ...(isThin ? { marginTop: `${this.controllerHeight - barHeight}px` } : {}),
           position: 'relative',
           MozUserSelect: 'none',
           WebkitUserSelect: 'none',
           msUserSelect: 'none',
           userSelect: 'none',
           ...(disabled ? { opacity: 0.5, cursor: 'not-allowed' } : { cursor: 'pointer' }),
+          ...barStyle,
         }}
         {...(this.touchDevice
           ? {
@@ -349,28 +338,29 @@ export default class Slider extends React.PureComponent<Props, State> {
           isTouchDevice={this.touchDevice}
           onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
           onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
-          height={this.height}
-          buttonHeight={this.buttonHeight}
+          height={barHeight}
+          controllerWidth={this.controllerWidth}
+          controllerHeight={this.controllerHeight}
           dragX={dragX}
-          showBubble={showBubble && !!shouldPopOnTouch}
+          showBubble={showBubble && !!shouldAnimateOnTouch}
           isControlByKeyBoard={this.isControlByKeyBoard}
           value={this.value}
           shouldDisplayValue={shouldDisplayValue}
           onMouseDown={this.onMouseDown}
           onInteractEnd={this.onInteractEnd}
-          backgroundColor={backgroundColor}
+          barColor={barColor}
           textBackgroundColor={textBackgroundColor}
           textColor={textColor}
           isThin={isThin}
           disabled={disabled}
-          controller={controller}
+          customController={customController}
           ref={this.controllerRef}
           max={max}
           min={min}
         />
         {(hasTickMarks || isThin) && (
           <SliderIndicator
-            backgroundColor={backgroundColor}
+            barColor={barColor}
             color={tickColor}
             amount={this.totalStepsNumber}
             isThin={isThin}
