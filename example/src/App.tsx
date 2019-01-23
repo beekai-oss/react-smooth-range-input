@@ -21,9 +21,9 @@ class App extends Component {
             <p>Default Example</p>
             <Slider value={1} min={1} max={30} />
             <p>With thin line through</p>
-            <Slider value={5} min={1} max={30} type="thin" hasTickMarks={false} />
+            <Slider value={5} min={1} max={30} backgroundHeight={10} hasTickMarks={false} />
             <p>Without the pop up</p>
-            <Slider value={8} min={1} max={30} type="thin" hasTickMarks={false} shouldPopOnTouch={false} />
+            <Slider value={8} min={1} max={30} backgroundHeight={10} hasTickMarks={false} shouldPopOnTouch={false} />
             <p>With the text value</p>
             <Slider
               value={2}
@@ -35,7 +35,7 @@ class App extends Component {
               shouldDisplayValue={false}
             />
             <p>Disabled Example</p>
-            <Slider value={25} min={1} max={30} type="thin" hasTickMarks={false} disabled />
+            <Slider value={25} min={1} max={30} backgroundHeight={10} hasTickMarks={false} disabled />
             <p>Custom Example 1</p>
             <Slider
               value={25}
@@ -61,7 +61,7 @@ class App extends Component {
               min={1}
               max={30}
               padding={0}
-              type="thin"
+              backgroundHeight={10}
               hasTickMarks={false}
               controller={({ ref }) => (
                 <div

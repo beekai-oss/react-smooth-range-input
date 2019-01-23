@@ -73,7 +73,7 @@ export default React.forwardRef(function Controller(
   let top = (isThin ? height - buttonHeight : height - buttonHeight) / 2;
 
   if (controller) {
-    top = isThin ? height - buttonHeight + 10 : height - buttonHeight;
+    top = isThin ? (height - buttonHeight) / 2 : height - buttonHeight;
   }
 
   return (

@@ -29,13 +29,14 @@ interface Props {
   textBackgroundColor?: string;
   hasTickMarks: boolean;
   tickColor?: string;
-  type?: 'thick' | 'thin';
   min: number;
   max: number;
   shouldPopOnTouch?: boolean;
   shouldDisplayValue?: boolean;
   controller?: any;
-  backgroundHeight?: number,
+  backgroundHeight?: number;
+  buttonWidth?: number;
+  buttonHeight?: number;
 }
 
 interface State {
@@ -59,6 +60,8 @@ export default class Slider extends React.PureComponent<Props, State> {
     shouldDisplayValue: true,
     controller: null,
     backgroundHeight: 40,
+    buttonWidth: 34,
+    buttonHeight: 34,
   };
 
   state = {
@@ -76,9 +79,9 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   arrowKeyPerClickDistance = 0;
 
-  buttonHeight = (this.props.backgroundHeight || 0) - (this.props.padding || 0) * 2;
+  buttonHeight = this.props.buttonHeight || 0;
 
-  buttonWidth = (this.props.backgroundHeight || 0) - (this.props.padding || 0) * 2;
+  buttonWidth = this.props.buttonWidth || 0;
 
   clientX = 0;
 
@@ -300,7 +303,6 @@ export default class Slider extends React.PureComponent<Props, State> {
       backgroundColor,
       textColor,
       tickColor,
-      type,
       disabled,
       shouldPopOnTouch,
       shouldDisplayValue,
@@ -309,7 +311,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       min,
       backgroundHeight = 0,
     } = this.props;
-    const isThin = type === 'thin';
+    const isThin = backgroundHeight < this.buttonHeight;
     this.calculateValueAndUpdateStore(false);
 
     return (
@@ -318,7 +320,8 @@ export default class Slider extends React.PureComponent<Props, State> {
           height: `${backgroundHeight}px`,
           width: '100%',
           borderRadius: '4px',
-          ...(isThin ? { paddingTop: '15px' } : { background: backgroundColor }),
+          background: backgroundColor,
+          ...(isThin ? { marginTop: `${this.buttonHeight - backgroundHeight}px` } : {}),
           position: 'relative',
           MozUserSelect: 'none',
           WebkitUserSelect: 'none',
