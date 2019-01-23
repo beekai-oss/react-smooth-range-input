@@ -20,6 +20,8 @@ class App extends Component {
           <div className="App-slider">
             <p>Default Example</p>
             <Slider value={1} min={1} max={30} />
+            <p>With number animation</p>
+            <Slider value={1} min={1} max={30} shouldAnimateNumber={false} />
             <p>With thin line through</p>
             <Slider value={5} min={1} max={30} barHeight={10} hasTickMarks={false} />
             <p>Without the pop up</p>

@@ -34,6 +34,7 @@ interface Props {
   customController?: ({ ref: any, value: number }) => React.ReactNode;
   shouldAnimateOnTouch?: boolean;
   shouldDisplayValue?: boolean;
+  shouldAnimateNumber?: boolean;
   controllerWidth?: number;
   controllerHeight?: number;
   barHeight?: number;
@@ -58,6 +59,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     hasTickMarks: true,
     shouldAnimateOnTouch: true,
     shouldDisplayValue: true,
+    shouldAnimateNumber: true,
     customController: null,
     controllerWidth: 34,
     controllerHeight: 34,
@@ -304,6 +306,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       min,
       barHeight = 0,
       barStyle = {},
+      shouldAnimateNumber,
     } = this.props;
     const isThin = barHeight < this.controllerHeight;
     this.calculateValueAndUpdateStore(false);
@@ -343,6 +346,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           controllerHeight={this.controllerHeight}
           dragX={dragX}
           showBubble={showBubble && !!shouldAnimateOnTouch}
+          shouldAnimateNumber={shouldAnimateNumber}
           isControlByKeyBoard={this.isControlByKeyBoard}
           value={this.value}
           shouldDisplayValue={shouldDisplayValue}

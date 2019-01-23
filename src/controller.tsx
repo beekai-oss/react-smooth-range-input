@@ -29,9 +29,10 @@ interface Props {
   isTouchDevice: boolean;
   disabled?: boolean;
   shouldDisplayValue?: boolean;
+  shouldAnimateNumber?: boolean;
   customController?: any;
-  max: number,
-  min: number,
+  max: number;
+  min: number;
 }
 
 const flipNumberProps = {
@@ -69,6 +70,7 @@ export default React.forwardRef(function Controller(
     customController,
     max,
     min,
+    shouldAnimateNumber,
   }: Props,
   ref: any,
 ) {
@@ -173,14 +175,22 @@ export default React.forwardRef(function Controller(
                 <span
                   style={{
                     position: 'absolute',
-                    top: '10px',
                     left: 0,
                     width: `${controllerHeight}px`,
                     color: textColor,
                     fontWeight: 600,
+                    ...(shouldAnimateNumber
+                      ? { top: '10px' }
+                      : {
+                          top: 0,
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          fontSize: '15px',
+                        }),
                   }}
                 >
-                  <FlipNumbers {...flipNumberProps} numbers={value.toString()} />
+                  {shouldAnimateNumber ? <FlipNumbers {...flipNumberProps} numbers={value.toString()} /> : value}
                 </span>
               )}
             </div>

@@ -20,6 +20,7 @@ const props = {
   min: 0,
   buttonHeight: 10,
   shouldDisplayValue: true,
+  shouldAnimateNumber: true,
 };
 
 describe('Controller', () => {
@@ -30,6 +31,11 @@ describe('Controller', () => {
 
   it('should render correct when isThin set to true', () => {
     const tree = renderer.create(<Controller {...{ ...props, isThin: true }} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render correct when shouldAnimateNumber set to false', () => {
+    const tree = renderer.create(<Controller {...{ ...props, shouldAnimateNumber: false }} />);
     expect(tree).toMatchSnapshot();
   });
 

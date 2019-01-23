@@ -629,6 +629,92 @@ exports[`Controller should render correct when isThin set to true 1`] = `
 </div>
 `;
 
+exports[`Controller should render correct when shouldAnimateNumber set to false 1`] = `
+<div
+  aria-valuemax={30}
+  aria-valuemin={0}
+  aria-valuenow={20}
+  aria-valuetext="20"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  role="slider"
+  style={
+    Object {
+      "cursor": "-webkit-grab",
+      "height": -10,
+      "position": "absolute",
+      "top": "10px",
+      "transform": "translateX(2px)",
+      "transition": "0s all",
+      "width": 0,
+    }
+  }
+  tabIndex={0}
+>
+  <svg
+    height="64px"
+    style={
+      Object {
+        "left": 0,
+        "position": "absolute",
+        "top": "-25px",
+        "transform": "translateY(0)",
+        "transition": "all 0.3s cubic-bezier(0.86, 0, 0.07, 1) 0s",
+      }
+    }
+    viewBox="0 0 40 64"
+    width="0px"
+    x="0px"
+    y="0px"
+  >
+    <path
+      d="M38.8,43.9c0,10.4-8.5,18.9-18.9,18.9S1,54.4,1,43.9S9.5,24,19.9,24S38.8,33.5,38.8,43.9z"
+      style={
+        Object {
+          "fill": undefined,
+          "transition": "0.3s all",
+        }
+      }
+    />
+  </svg>
+  <div
+    style={
+      Object {
+        "background": undefined,
+        "borderRadius": "50%",
+        "height": "0px",
+        "position": "absolute",
+        "transform": "translateY(0)",
+        "transition": "all 0.1s cubic-bezier(0.86, 0, 0.07, 1) 0s",
+        "width": "0px",
+      }
+    }
+  >
+    <span
+      style={
+        Object {
+          "alignItems": "center",
+          "color": undefined,
+          "display": "flex",
+          "fontSize": "15px",
+          "fontWeight": 600,
+          "justifyContent": "center",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "0px",
+        }
+      }
+    >
+      20
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Controller should render correctly 1`] = `
 <div
   aria-valuemax={30}
