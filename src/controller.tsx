@@ -187,6 +187,7 @@ export default React.forwardRef(function Controller(
                           justifyContent: 'center',
                           alignItems: 'center',
                           fontSize: '15px',
+                          height: `${controllerHeight}px`,
                         }),
                   }}
                 >

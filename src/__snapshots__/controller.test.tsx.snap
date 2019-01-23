@@ -701,6 +701,7 @@ exports[`Controller should render correct when shouldAnimateNumber set to false 
           "display": "flex",
           "fontSize": "15px",
           "fontWeight": 600,
+          "height": "0px",
           "justifyContent": "center",
           "left": 0,
           "position": "absolute",
