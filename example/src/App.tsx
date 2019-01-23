@@ -20,66 +20,66 @@ class App extends Component {
           <div className="App-slider">
             <p>Default Example</p>
             <Slider value={1} min={1} max={30} />
-            {/*<p>With thin line through</p>*/}
-            {/*<Slider value={5} min={1} max={30} barHeight={10} hasTickMarks={false} />*/}
-            {/*<p>Without the pop up</p>*/}
-            {/*<Slider value={8} min={1} max={30} barHeight={10} hasTickMarks={false} shouldAnimateOnTouch={false} />*/}
-            {/*<p>With the text value</p>*/}
-            {/*<Slider*/}
-              {/*value={2}*/}
-              {/*min={1}*/}
-              {/*max={30}*/}
-              {/*hasTickMarks={false}*/}
-              {/*shouldAnimateOnTouch={false}*/}
-              {/*shouldDisplayValue={false}*/}
-            {/*/>*/}
-            {/*<p>Disabled Example</p>*/}
-            {/*<Slider value={25} min={1} max={30} barHeight={10} hasTickMarks={false} disabled />*/}
-            {/*<p>Custom Example 1</p>*/}
-            {/*<Slider*/}
-              {/*value={25}*/}
-              {/*min={1}*/}
-              {/*max={30}*/}
-              {/*padding={0}*/}
-              {/*customController={({ ref }) => (*/}
-                {/*<div*/}
-                  {/*ref={ref}*/}
-                  {/*style={{*/}
-                    {/*width: '40px',*/}
-                    {/*height: '40px',*/}
-                    {/*background: 'white',*/}
-                    {/*display: 'block',*/}
-                    {/*borderRadius: 4,*/}
-                  {/*}}*/}
-                {/*/>*/}
-              {/*)}*/}
-            {/*/>*/}
-            {/*<p>Custom Example 2</p>*/}
-            {/*<Slider*/}
-              {/*value={25}*/}
-              {/*min={1}*/}
-              {/*max={30}*/}
-              {/*padding={0}*/}
-              {/*barHeight={10}*/}
-              {/*hasTickMarks={false}*/}
-              {/*customController={({ ref }) => (*/}
-                {/*<div*/}
-                  {/*ref={ref}*/}
-                  {/*style={{*/}
-                    {/*width: '20px',*/}
-                    {/*height: '20px',*/}
-                    {/*background: 'white',*/}
-                    {/*display: 'block',*/}
-                    {/*borderRadius: 4,*/}
-                  {/*}}*/}
-                {/*/>*/}
-              {/*)}*/}
-            {/*/>*/}
-            {/*<br />*/}
-            {/*<br />*/}
-            {/*<br />*/}
-            {/*<br />*/}
-            {/*<br />*/}
+            <p>With thin line through</p>
+            <Slider value={5} min={1} max={30} barHeight={10} hasTickMarks={false} />
+            <p>Without the pop up</p>
+            <Slider value={8} min={1} max={30} barHeight={10} hasTickMarks={false} shouldAnimateOnTouch={false} />
+            <p>With the text value</p>
+            <Slider
+              value={2}
+              min={1}
+              max={30}
+              hasTickMarks={false}
+              shouldAnimateOnTouch={false}
+              shouldDisplayValue={false}
+            />
+            <p>Disabled Example</p>
+            <Slider value={25} min={1} max={30} barHeight={10} hasTickMarks={false} disabled />
+            <p>Custom Example 1</p>
+            <Slider
+              value={25}
+              min={1}
+              max={30}
+              padding={0}
+              customController={({ ref }) => (
+                <div
+                  ref={ref}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    background: 'white',
+                    display: 'block',
+                    borderRadius: 4,
+                  }}
+                />
+              )}
+            />
+            <p>Custom Example 2</p>
+            <Slider
+              value={25}
+              min={1}
+              max={30}
+              padding={0}
+              barHeight={10}
+              hasTickMarks={false}
+              customController={({ ref }) => (
+                <div
+                  ref={ref}
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    background: 'white',
+                    display: 'block',
+                    borderRadius: 4,
+                  }}
+                />
+              )}
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </header>
       </div>

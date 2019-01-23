@@ -27,7 +27,7 @@ interface Props {
   onChange?: (number) => void;
   disabled?: boolean;
   padding?: number;
-  backgroundColor?: string;
+  barColor?: string;
   textColor?: string;
   textBackgroundColor?: string;
   tickColor?: string;
@@ -49,7 +49,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   static defaultProps = {
     value: 0,
     onChange: () => {},
-    backgroundColor: colors.blue,
+    barColor: colors.blue,
     textColor: colors.blue,
     textBackgroundColor: colors.white,
     tickColor: colors.lightBlue,
@@ -293,7 +293,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     const {
       hasTickMarks,
       textBackgroundColor,
-      backgroundColor,
+      barColor,
       textColor,
       tickColor,
       disabled,
@@ -314,7 +314,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           height: `${barHeight}px`,
           width: '100%',
           borderRadius: '4px',
-          background: backgroundColor,
+          background: barColor,
           ...(isThin ? { marginTop: `${this.controllerHeight - barHeight}px` } : {}),
           position: 'relative',
           MozUserSelect: 'none',
@@ -348,7 +348,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           shouldDisplayValue={shouldDisplayValue}
           onMouseDown={this.onMouseDown}
           onInteractEnd={this.onInteractEnd}
-          backgroundColor={backgroundColor}
+          barColor={barColor}
           textBackgroundColor={textBackgroundColor}
           textColor={textColor}
           isThin={isThin}
@@ -360,7 +360,7 @@ export default class Slider extends React.PureComponent<Props, State> {
         />
         {(hasTickMarks || isThin) && (
           <SliderIndicator
-            backgroundColor={backgroundColor}
+            barColor={barColor}
             color={tickColor}
             amount={this.totalStepsNumber}
             isThin={isThin}

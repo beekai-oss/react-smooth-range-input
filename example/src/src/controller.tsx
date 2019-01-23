@@ -23,7 +23,7 @@ interface Props {
   isThin: boolean;
   onMouseDown: (MouseEvent) => void;
   onInteractEnd: (Event) => void;
-  backgroundColor?: string;
+  barColor?: string;
   textBackgroundColor?: string;
   textColor?: string;
   isTouchDevice: boolean;
@@ -59,7 +59,7 @@ export default React.forwardRef(function Controller(
     value,
     onMouseDown,
     onInteractEnd,
-    backgroundColor,
+    barColor,
     textBackgroundColor,
     textColor,
     isThin,
@@ -135,7 +135,7 @@ export default React.forwardRef(function Controller(
               <path
                 style={{
                   transition: '0.3s all',
-                  fill: backgroundColor,
+                  fill: barColor,
                 }}
                 d={showBubble ? bubbleWithTail : bubble}
               />
