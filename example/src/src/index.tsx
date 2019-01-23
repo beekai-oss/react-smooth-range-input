@@ -36,8 +36,8 @@ interface Props {
   shouldDisplayValue?: boolean;
   controllerWidth?: number;
   controllerHeight?: number;
-  backgroundHeight?: number;
-  backgroundStyle: { string: number | string };
+  barHeight?: number;
+  barStyle: { string: number | string };
 }
 
 interface State {
@@ -56,14 +56,13 @@ export default class Slider extends React.PureComponent<Props, State> {
     disabled: false,
     padding: 3,
     hasTickMarks: true,
-    type: 'thick',
     shouldAnimateOnTouch: true,
     shouldDisplayValue: true,
     customController: null,
-    backgroundHeight: 40,
     controllerWidth: 34,
     controllerHeight: 34,
-    backgroundStyle: {},
+    barHeight: 40,
+    barStyle: {},
   };
 
   state = {
@@ -179,9 +178,9 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onMouseDown: any = (e: MouseEvent): void => {
-    const { disabled } = this.props;
     if (this.touchDevice) return;
-    if (disabled) return;
+    if (this.props.disabled) return;
+
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onInteractEnd);
     this.commonOnStart(e);
@@ -235,6 +234,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   onClick = (e: any) => {
     const { padding, disabled } = this.props;
     if (disabled) return;
+
     const { left } = e.target.getBoundingClientRect();
     const { x } = findElementXandY(e);
     this.isControlByKeyBoard = true;
@@ -257,31 +257,22 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.isControlByKeyBoard = true;
     const { dragX } = this.state;
     const { padding, disabled } = this.props;
-    if (disabled) return;
+    if (disabled || !['ArrowDown', 'ArrowLeft', 'ArrowUp', 'ArrowRight'].includes(e.key)) return;
 
-    switch (e.key) {
-      case 'ArrowDown':
-      case 'ArrowLeft':
-      case 'ArrowUp':
-      case 'ArrowRight':
-        const isPressedLeft = ['ArrowUp', 'ArrowRight'].includes(e.key);
-        e.preventDefault();
-        this.setState({
-          dragX: getRangedPositionX({
-            padding,
-            dragX: isPressedLeft ? dragX + this.arrowKeyPerClickDistance : dragX - this.arrowKeyPerClickDistance,
-            maxPositionX: this.maxScrollDistance,
-          }),
-        });
-        break;
-      default:
-        break;
-    }
+    e.preventDefault();
+    const isPressedLeft = ['ArrowUp', 'ArrowRight'].includes(e.key);
+    this.setState({
+      dragX: getRangedPositionX({
+        padding,
+        dragX: isPressedLeft ? dragX + this.arrowKeyPerClickDistance : dragX - this.arrowKeyPerClickDistance,
+        maxPositionX: this.maxScrollDistance,
+      }),
+    });
 
     this.calculateValueAndUpdateStore();
   };
 
-  calculateValueAndUpdateStore(isUpdateStore: boolean = true) {
+  calculateValueAndUpdateStore(shouldTriggerOnChange: boolean = true) {
     const { min, onChange, padding = 0 } = this.props;
     const { dragX } = this.state;
 
@@ -292,7 +283,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       min,
     });
 
-    if (isUpdateStore && onChange) {
+    if (shouldTriggerOnChange && onChange) {
       onChange(this.value);
     }
   }
@@ -311,27 +302,27 @@ export default class Slider extends React.PureComponent<Props, State> {
       customController,
       max,
       min,
-      backgroundHeight = 0,
-      backgroundStyle = {},
+      barHeight = 0,
+      barStyle = {},
     } = this.props;
-    const isThin = backgroundHeight < this.controllerHeight;
+    const isThin = barHeight < this.controllerHeight;
     this.calculateValueAndUpdateStore(false);
 
     return (
       <div
         style={{
-          height: `${backgroundHeight}px`,
+          height: `${barHeight}px`,
           width: '100%',
           borderRadius: '4px',
           background: backgroundColor,
-          ...(isThin ? { marginTop: `${this.controllerHeight - backgroundHeight}px` } : {}),
+          ...(isThin ? { marginTop: `${this.controllerHeight - barHeight}px` } : {}),
           position: 'relative',
           MozUserSelect: 'none',
           WebkitUserSelect: 'none',
           msUserSelect: 'none',
           userSelect: 'none',
           ...(disabled ? { opacity: 0.5, cursor: 'not-allowed' } : { cursor: 'pointer' }),
-          ...backgroundStyle,
+          ...barStyle,
         }}
         {...(this.touchDevice
           ? {
@@ -347,7 +338,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           isTouchDevice={this.touchDevice}
           onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
           onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
-          height={backgroundHeight}
+          height={barHeight}
           controllerWidth={this.controllerWidth}
           controllerHeight={this.controllerHeight}
           dragX={dragX}

@@ -19,7 +19,7 @@ export default ({ amount, color, isThin, backgroundColor, hasTickMarks }: Props)
       ...(isThin ? { background: backgroundColor, borderRadius: '4px' } : { paddingTop: '15px' }),
     }}
   >
-    {hasTickMarks && createArrayWithNumbers(amount).map(index => (
+    {hasTickMarks && createArrayWithNumbers(amount > 50 ? 50 : amount).map(index => (
       <span
         style={{
           height: '10px',
