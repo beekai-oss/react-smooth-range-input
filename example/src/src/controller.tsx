@@ -13,7 +13,8 @@ const commonAnimationProps = {
 interface Props {
   onFocus: () => void;
   onBlur: () => void;
-  controllerHeight: number;
+  controllerHeight?: number;
+  controllerWidth?: number;
   height: number;
   value: number;
   dragX: number;
@@ -28,7 +29,7 @@ interface Props {
   isTouchDevice: boolean;
   disabled?: boolean;
   shouldDisplayValue?: boolean;
-  controller?: any;
+  customController?: any;
   max: number,
   min: number,
 }
@@ -49,7 +50,8 @@ export default React.forwardRef(function Controller(
   {
     onFocus,
     onBlur,
-    controllerHeight,
+    controllerHeight = 0,
+    controllerWidth = 0,
     height,
     dragX,
     showBubble,
@@ -64,7 +66,7 @@ export default React.forwardRef(function Controller(
     isTouchDevice,
     disabled,
     shouldDisplayValue,
-    controller,
+    customController,
     max,
     min,
   }: Props,
@@ -72,7 +74,7 @@ export default React.forwardRef(function Controller(
 ) {
   let top = (isThin ? height - controllerHeight : height - controllerHeight) / 2;
 
-  if (controller) {
+  if (customController) {
     top = isThin ? (height - controllerHeight) / 2 : height - controllerHeight;
   }
 
@@ -92,9 +94,10 @@ export default React.forwardRef(function Controller(
         top: `${top}px`,
         position: 'absolute',
         cursor: disabled ? 'not-allowed' : '-webkit-grab',
-        fontWeight: 600,
         transform: `translateX(${dragX}px)`,
         transition: isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
+        width: controllerWidth,
+        height: controllerHeight - 10,
       }}
       role="slider"
       aria-valuenow={value}
@@ -102,7 +105,7 @@ export default React.forwardRef(function Controller(
       aria-valuemax={max}
       aria-valuetext={value.toString()}
     >
-      {!controller && (
+      {!customController && (
         <Animate
           play={showBubble}
           {...commonAnimationProps}
@@ -149,9 +152,9 @@ export default React.forwardRef(function Controller(
         }}
         durationSeconds={0.3}
         reverseDurationSeconds={0.1}
-        render={({ style }) => {
-          return controller ? (
-            controller({
+        render={({ style }) =>
+          customController ? (
+            customController({
               ref,
               value,
             })
@@ -174,14 +177,15 @@ export default React.forwardRef(function Controller(
                     left: 0,
                     width: `${controllerHeight}px`,
                     color: textColor,
+                    fontWeight: 600,
                   }}
                 >
                   <FlipNumbers {...flipNumberProps} numbers={value.toString()} />
                 </span>
               )}
             </div>
-          );
-        }}
+          )
+        }
       />
     </div>
   );

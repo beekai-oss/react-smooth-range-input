@@ -31,7 +31,7 @@ interface Props {
   textColor?: string;
   textBackgroundColor?: string;
   tickColor?: string;
-  controller?: ({ ref: any, value: number }) => React.ReactNode;
+  customController?: ({ ref: any, value: number }) => React.ReactNode;
   shouldAnimateOnTouch?: boolean;
   shouldDisplayValue?: boolean;
   controllerWidth?: number;
@@ -59,7 +59,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     type: 'thick',
     shouldAnimateOnTouch: true,
     shouldDisplayValue: true,
-    controller: null,
+    customController: null,
     backgroundHeight: 40,
     controllerWidth: 34,
     controllerHeight: 34,
@@ -77,6 +77,8 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   touchDevice: boolean = isTouchDevice();
 
+  controllerRef: any = React.createRef();
+
   maxScrollDistance = 0;
 
   arrowKeyPerClickDistance = 0;
@@ -93,8 +95,6 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   timer: any;
 
-  controllerRef: any = React.createRef();
-
   totalStepsNumber: number = this.props.max - this.props.min;
 
   calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.controllerHeight);
@@ -106,9 +106,9 @@ export default class Slider extends React.PureComponent<Props, State> {
     const { value, min, padding = 0 } = this.props;
 
     if (this.controllerRef && this.controllerRef.current) {
-      const controllerRef = this.controllerRef.current.getBoundingClientRect();
-      this.controllerWidth = controllerRef.width;
-      this.controllerHeight = controllerRef.height;
+      const { width: controllerWidth, height: controllerHeight } = this.controllerRef.current.getBoundingClientRect();
+      this.controllerWidth = controllerWidth;
+      this.controllerHeight = controllerHeight;
     }
 
     this.maxScrollDistance = getMaxScrollDistance(width, this.controllerWidth, padding!);
@@ -269,7 +269,7 @@ export default class Slider extends React.PureComponent<Props, State> {
         this.setState({
           dragX: getRangedPositionX({
             padding,
-            dragX: isPressedLeft ? dragX - this.arrowKeyPerClickDistance : dragX + this.arrowKeyPerClickDistance,
+            dragX: isPressedLeft ? dragX + this.arrowKeyPerClickDistance : dragX - this.arrowKeyPerClickDistance,
             maxPositionX: this.maxScrollDistance,
           }),
         });
@@ -308,7 +308,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       disabled,
       shouldAnimateOnTouch,
       shouldDisplayValue,
-      controller,
+      customController,
       max,
       min,
       backgroundHeight = 0,
@@ -348,6 +348,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
           onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
           height={backgroundHeight}
+          controllerWidth={this.controllerWidth}
           controllerHeight={this.controllerHeight}
           dragX={dragX}
           showBubble={showBubble && !!shouldAnimateOnTouch}
@@ -361,7 +362,7 @@ export default class Slider extends React.PureComponent<Props, State> {
           textColor={textColor}
           isThin={isThin}
           disabled={disabled}
-          controller={controller}
+          customController={customController}
           ref={this.controllerRef}
           max={max}
           min={min}

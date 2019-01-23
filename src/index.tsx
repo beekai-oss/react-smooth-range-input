@@ -57,7 +57,7 @@ export default class Slider extends React.PureComponent<Props, State> {
     type: 'thick',
     shouldPopOnTouch: true,
     shouldDisplayValue: true,
-    controller: null,
+    customController: null,
   };
 
   state = {

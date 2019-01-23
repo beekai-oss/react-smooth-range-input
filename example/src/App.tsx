@@ -42,7 +42,7 @@ class App extends Component {
               min={1}
               max={30}
               padding={0}
-              controller={({ ref }) => (
+              customController={({ ref }) => (
                 <div
                   ref={ref}
                   style={{
@@ -63,7 +63,7 @@ class App extends Component {
               padding={0}
               backgroundHeight={10}
               hasTickMarks={false}
-              controller={({ ref }) => (
+              customController={({ ref }) => (
                 <div
                   ref={ref}
                   style={{
