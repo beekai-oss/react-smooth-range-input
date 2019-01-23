@@ -24,7 +24,7 @@ class App extends Component {
             <Slider value={5} min={1} max={30} barHeight={10} hasTickMarks={false} />
             <p>Without the pop up</p>
             <Slider value={8} min={1} max={30} barHeight={10} hasTickMarks={false} shouldAnimateOnTouch={false} />
-            <p>With the text value</p>
+            <p>Without the text value</p>
             <Slider
               value={2}
               min={1}
