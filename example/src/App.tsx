@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slider from './src';
+import Slider from 'react-smooth-range-input';
 import './App.css';
 
 class App extends Component {
