@@ -21,22 +21,21 @@ class App extends Component {
             <p>Default Example</p>
             <Slider value={1} min={1} max={30} />
             <p>With thin line through</p>
-            <Slider value={5} min={1} max={30} type="thin" padding={0} hasTickMarks={false} />
+            <Slider value={5} min={1} max={30} type="thin" hasTickMarks={false} />
             <p>Without the pop up</p>
-            <Slider value={8} min={1} max={30} type="thin" padding={0} hasTickMarks={false} shouldPopOnTouch={false} />
+            <Slider value={8} min={1} max={30} type="thin" hasTickMarks={false} shouldPopOnTouch={false} />
             <p>With the text value</p>
             <Slider
               value={2}
               min={1}
               max={30}
               type="thin"
-              padding={0}
               hasTickMarks={false}
               shouldPopOnTouch={false}
               shouldDisplayValue={false}
             />
             <p>Disabled Example</p>
-            <Slider value={25} min={1} max={30} type="thin" padding={0} hasTickMarks={false} disabled />
+            <Slider value={25} min={1} max={30} type="thin" hasTickMarks={false} disabled />
             <p>Custom Example 1</p>
             <Slider
               value={25}

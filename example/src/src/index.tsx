@@ -17,7 +17,6 @@ import isTouchDevice from './utilities/isTouchDevice';
 import preventScrollOnMobile from './utilities/preventScrollOnMobile';
 import colors from './constants/colors';
 
-const topBottomPadding = 6;
 const delayMsForAnimation = 200;
 
 interface Props {
@@ -77,9 +76,9 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   height = 40;
 
-  buttonHeight = this.height - topBottomPadding;
+  buttonHeight = this.height - (this.props.padding || 0) * 2;
 
-  buttonWidth = this.height - topBottomPadding;
+  buttonWidth = this.height - (this.props.padding || 0) * 2;
 
   clientX = 0;
 
@@ -99,11 +98,11 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   componentDidMount(): void {
     const { width } = this.wrapperRef.current.getBoundingClientRect();
-    const { value, min, padding } = this.props;
+    const { value, min, padding = 0 } = this.props;
 
     if (this.controllerRef && this.controllerRef.current) {
       const controllerRef = this.controllerRef.current.getBoundingClientRect();
-      this.height = controllerRef.height;
+      this.height = controllerRef.height - padding * 2;
       this.buttonWidth = controllerRef.width;
       this.buttonHeight = controllerRef.height;
     }
@@ -259,22 +258,14 @@ export default class Slider extends React.PureComponent<Props, State> {
     switch (e.key) {
       case 'ArrowDown':
       case 'ArrowLeft':
-        e.preventDefault();
-        this.setState({
-          dragX: getRangedPositionX({
-            padding,
-            dragX: dragX - this.arrowKeyPerClickDistance,
-            maxPositionX: this.maxScrollDistance,
-          }),
-        });
-        break;
       case 'ArrowUp':
       case 'ArrowRight':
+        const isPressedLeft = ['ArrowUp', 'ArrowRight'].includes(e.key);
         e.preventDefault();
         this.setState({
           dragX: getRangedPositionX({
             padding,
-            dragX: dragX + this.arrowKeyPerClickDistance,
+            dragX: isPressedLeft ? dragX - this.arrowKeyPerClickDistance : dragX + this.arrowKeyPerClickDistance,
             maxPositionX: this.maxScrollDistance,
           }),
         });
