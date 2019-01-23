@@ -16,9 +16,6 @@ const props = {
   showBubble: false,
   value: 20,
   isTouchDevice: false,
-  max: 30,
-  min: 0,
-  buttonHeight: 10,
 };
 
 describe('Controller', () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slider from 'react-smooth-range-input';
+import Slider from './src';
 import './App.css';
 
 class App extends Component {
@@ -7,14 +7,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <iframe
-            className="GithubStar"
-            src="https://ghbtns.com/github-btn.html?user=bluebill1049&repo=react-smooth-range-input&type=star&count=true&size=large"
-            frameBorder="0"
-            scrolling="0"
-            width="160px"
-            height="30px"
-          />
           <a href="https://github.com/bluebill1049/react-smooth-range-input" className="Github">
             <svg viewBox="0 0 496 512" height="30" aria-hidden="true" focusable="false" fill="currentColor">
               <path
@@ -26,13 +18,70 @@ class App extends Component {
           <h1>🎚 React Smooth Input Range</h1>
           <h3>Making input range smooth and elegant</h3>
           <div className="App-slider">
-            <p>Example A:</p>
+            <p>Default Example</p>
             <Slider value={1} min={1} max={30} />
-            <br />
-            <br />
-            <br />
-            <p>Example B:</p>
+            <p>With thin line through</p>
             <Slider value={5} min={1} max={30} type="thin" padding={0} hasTickMarks={false} />
+            <p>Without the pop up</p>
+            <Slider value={8} min={1} max={30} type="thin" padding={0} hasTickMarks={false} shouldPopOnTouch={false} />
+            <p>With the text value</p>
+            <Slider
+              value={2}
+              min={1}
+              max={30}
+              type="thin"
+              padding={0}
+              hasTickMarks={false}
+              shouldPopOnTouch={false}
+              shouldDisplayValue={false}
+            />
+            <p>Disabled Example</p>
+            <Slider value={25} min={1} max={30} type="thin" padding={0} hasTickMarks={false} disabled />
+            <p>Custom Example 1</p>
+            <Slider
+              value={25}
+              min={1}
+              max={30}
+              padding={0}
+              controller={({ ref }) => (
+                <div
+                  ref={ref}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    background: 'white',
+                    display: 'block',
+                    borderRadius: 4,
+                  }}
+                />
+              )}
+            />
+            <p>Custom Example 2</p>
+            <Slider
+              value={25}
+              min={1}
+              max={30}
+              padding={0}
+              type="thin"
+              hasTickMarks={false}
+              controller={({ ref }) => (
+                <div
+                  ref={ref}
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    background: 'white',
+                    display: 'block',
+                    borderRadius: 4,
+                  }}
+                />
+              )}
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </header>
       </div>
