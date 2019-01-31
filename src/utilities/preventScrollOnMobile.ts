@@ -1,10 +1,12 @@
 export default function preventScrollOnMobile() {
   let originalOnTouchMove;
+  const preventDefault = (e) => e.preventDefault();
 
   const preventAction = (e?: any) => {
     // @ts-ignore
     if (!this.isTouching) return;
-    if (e) e.preventDefault();
+    if (e) preventDefault(e);
+    document.addEventListener('touchmove', preventDefault, { passive: false });
 
     return false;
   };
@@ -18,5 +20,6 @@ export default function preventScrollOnMobile() {
 
   return () => {
     document.ontouchmove = originalOnTouchMove;
+    document.removeEventListener('touchmove', preventDefault);
   };
 }

@@ -100,8 +100,6 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.controllerHeight);
 
-  touchActionValue = '';
-
   restoreTouchMove = () => {};
 
   componentDidMount(): void {
@@ -164,8 +162,6 @@ export default class Slider extends React.PureComponent<Props, State> {
   };
 
   onTouchStart: any = (e: TouchEvent): void => {
-    this.touchActionValue = document.body.style.touchAction;
-    document.body.style.touchAction = 'none';
     const { padding, disabled } = this.props;
     if (disabled) return;
     this.isTouching = true;
@@ -199,10 +195,10 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.setState({
       showBubble: false,
     });
-    document.body.style.touchAction = this.touchActionValue;
     document.removeEventListener('touchend', this.onInteractEnd);
     document.removeEventListener('mousemove', this.onMouseMove);
     document.removeEventListener('mouseup', this.onInteractEnd);
+    this.restoreTouchMove();
     this.calculateValueAndUpdateStore();
   };
 
