@@ -40,8 +40,8 @@
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
-    "react-flip-numbers": "^2.1.0",
-    "react-simple-animate": "^2.5.0"
+    "react-flip-numbers": "^2.1.2",
+    "react-simple-animate": "^2.6.2"
   },
   "peerDependencies": {
     "react": "^16.7.0",

@@ -30,6 +30,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 3,
+      isFocusing: false,
       showBubble: false,
     });
 
@@ -55,6 +56,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 3,
+      isFocusing: false,
       showBubble: true,
     });
   });
@@ -70,6 +72,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 0,
+      isFocusing: false,
       showBubble: false,
     });
     expect(onChange).toBeCalled();
@@ -83,6 +86,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 0,
+      isFocusing: false,
       showBubble: false,
     });
 
@@ -94,6 +98,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 3,
+      isFocusing: false,
       showBubble: false,
     });
     expect(onChange).toBeCalled();
@@ -107,6 +112,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 0,
+      isFocusing: false,
       showBubble: false,
     });
 
@@ -118,6 +124,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 3,
+      isFocusing: false,
       showBubble: false,
     });
     expect(onChange).toBeCalled();
@@ -131,6 +138,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 0,
+      isFocusing: false,
       showBubble: false,
     });
 
@@ -142,6 +150,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 0,
+      isFocusing: false,
       showBubble: false,
     });
     expect(preventDefault).not.toBeCalled();
@@ -188,6 +197,7 @@ describe('Slider', () => {
 
     expect(tree.state()).toEqual({
       dragX: 101,
+      isFocusing: false,
       showBubble: false,
     });
   });
@@ -222,7 +232,7 @@ describe('Slider', () => {
     expect(tree.instance().maxScrollDistance).toEqual(163);
     // @ts-ignore:
     expect(tree.instance().arrowKeyPerClickDistance).toEqual(9.055555555555555);
-    expect(tree.state()).toEqual({ dragX: 0, showBubble: false });
+    expect(tree.state()).toEqual({ dragX: 0, isFocusing: false, showBubble: false });
   });
 
   it('should invoke restoreTouchMove when component un mount', () => {

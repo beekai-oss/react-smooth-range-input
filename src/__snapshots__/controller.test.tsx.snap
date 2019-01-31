@@ -16,6 +16,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
     Object {
       "cursor": "-webkit-grab",
       "height": -10,
+      "outline": "none",
       "position": "absolute",
       "top": "10px",
       "transform": "translateX(2px)",
@@ -77,6 +78,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
       }
     >
       <section
+        aria-label="20"
         style={
           Object {
             "alignItems": "center",
@@ -86,6 +88,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
         }
       >
         <span
+          aria-hidden={true}
           style={
             Object {
               "display": "inline-block",
@@ -355,6 +358,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
           </span>
         </span>
         <span
+          aria-hidden={true}
           style={
             Object {
               "display": "inline-block",
@@ -645,6 +649,7 @@ exports[`Controller should render correct when shouldAnimateNumber set to false 
     Object {
       "cursor": "-webkit-grab",
       "height": -10,
+      "outline": "none",
       "position": "absolute",
       "top": "10px",
       "transform": "translateX(2px)",
@@ -732,6 +737,7 @@ exports[`Controller should render correctly 1`] = `
     Object {
       "cursor": "-webkit-grab",
       "height": -10,
+      "outline": "none",
       "position": "absolute",
       "top": "10px",
       "transform": "translateX(2px)",
@@ -793,6 +799,7 @@ exports[`Controller should render correctly 1`] = `
       }
     >
       <section
+        aria-label="20"
         style={
           Object {
             "alignItems": "center",
@@ -802,6 +809,7 @@ exports[`Controller should render correctly 1`] = `
         }
       >
         <span
+          aria-hidden={true}
           style={
             Object {
               "display": "inline-block",
@@ -1071,6 +1079,7 @@ exports[`Controller should render correctly 1`] = `
           </span>
         </span>
         <span
+          aria-hidden={true}
           style={
             Object {
               "display": "inline-block",

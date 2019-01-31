@@ -33,6 +33,8 @@ interface Props {
   customController?: any;
   max: number;
   min: number;
+  isFocusing?: boolean;
+  focusStyle?: string,
 }
 
 const flipNumberProps = {
@@ -71,6 +73,8 @@ export default React.forwardRef(function Controller(
     max,
     min,
     shouldAnimateNumber,
+    isFocusing,
+    focusStyle,
   }: Props,
   ref: any,
 ) {
@@ -100,6 +104,7 @@ export default React.forwardRef(function Controller(
         transition: isControlByKeyBoard ? '0.15s all ease-in' : '0s all',
         width: controllerWidth,
         height: controllerHeight - 10,
+        outline: 'none',
       }}
       role="slider"
       aria-valuenow={value}
@@ -168,6 +173,7 @@ export default React.forwardRef(function Controller(
                 width: `${controllerHeight}px`,
                 borderRadius: '50%',
                 position: 'absolute',
+                ...(isFocusing && !isTouchDevice ? { boxShadow: focusStyle || 'rgb(0, 0, 0) 0px 0px 6px' } : null),
                 ...style,
               }}
             >

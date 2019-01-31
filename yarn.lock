@@ -3308,10 +3308,10 @@ react-dom@^16.7.0:
     prop-types "^15.6.2"
     scheduler "^0.12.0"
 
-react-flip-numbers@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-flip-numbers/-/react-flip-numbers-2.1.0.tgz#a382a7f9e9e4ca113916165cb5218fa7fa50210c"
-  integrity sha512-z7ekb9FmcHZ4cGKCG2Ui9mfMNr9kVwcdk+pl3PyLDNxT/AJOl9FwW5QArtS/aN4r1J2RGV0pV0A4WnPL8eKQ2Q==
+react-flip-numbers@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-flip-numbers/-/react-flip-numbers-2.1.2.tgz#da3757eef5294599b03673fba7d17f3d87ebb5c8"
+  integrity sha512-BrfEzQcene9EGi19R7pj4EFzLtYXBhobygAhKGQW55smEzncmI4Z8o2Qk+4/EETKKHpU1Xc6Gu6n1KIeMP9mfg==
   dependencies:
     react-simple-animate "2.5.0"
 
@@ -3320,10 +3320,15 @@ react-is@^16.6.1, react-is@^16.7.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
 
-react-simple-animate@2.5.0, react-simple-animate@^2.5.0:
+react-simple-animate@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.5.0.tgz#f25c83bee1299367714fe5161f40e417120fd74e"
   integrity sha512-e2GL46oVO0Y7CwuHEf1ZvLQt3wbJ5B9f5H+UkHXEvDDDkMMcCRz+w0DAWkz7icD0d+++1FfQt5MR9IBnYYMuAQ==
+
+react-simple-animate@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.6.2.tgz#56d0af863fbfc483d4efefd394c20af7fe61129f"
+  integrity sha512-ga4rOIbdcipASiJZy1zi/gZGtdmtgxCqdYcn3Rf1JtB951/yLiYePOaxNuTJAwNj5jTXH6z991BnTQedEPxD6Q==
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
   version "16.7.0"

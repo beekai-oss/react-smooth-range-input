@@ -39,11 +39,13 @@ interface Props {
   controllerHeight?: number;
   barHeight?: number;
   barStyle: { string: number | string };
+  focusStyle?: string,
 }
 
 interface State {
   dragX: number;
   showBubble: boolean;
+  isFocusing: boolean,
 }
 
 export default class Slider extends React.PureComponent<Props, State> {
@@ -70,6 +72,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   state = {
     dragX: 0,
     showBubble: false,
+    isFocusing: false,
   };
 
   isControlByKeyBoard = false;
@@ -292,7 +295,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { dragX, showBubble } = this.state;
+    const { dragX, showBubble, isFocusing } = this.state;
     const {
       hasTickMarks,
       textBackgroundColor,
@@ -308,6 +311,7 @@ export default class Slider extends React.PureComponent<Props, State> {
       barHeight = 0,
       barStyle = {},
       shouldAnimateNumber,
+      focusStyle,
     } = this.props;
     const isThin = barHeight < this.controllerHeight;
     this.calculateValueAndUpdateStore(false);
@@ -340,9 +344,21 @@ export default class Slider extends React.PureComponent<Props, State> {
       >
         <Controller
           isTouchDevice={this.touchDevice}
-          onFocus={() => document.addEventListener('keydown', this.onKeyEvent)}
-          onBlur={() => document.removeEventListener('keydown', this.onKeyEvent)}
+          focusStyle={focusStyle}
+          onFocus={() => {
+            this.setState({
+              isFocusing: true,
+            });
+            document.addEventListener('keydown', this.onKeyEvent)
+          }}
+          onBlur={() => {
+            this.setState({
+              isFocusing: false,
+            });
+            document.removeEventListener('keydown', this.onKeyEvent)
+          }}
           height={barHeight}
+          isFocusing={isFocusing}
           controllerWidth={this.controllerWidth}
           controllerHeight={this.controllerHeight}
           dragX={dragX}
