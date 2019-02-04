@@ -176,6 +176,7 @@ export default React.forwardRef(function Controller(
                 ...(isFocusing && !isTouchDevice ? { boxShadow: focusStyle || 'rgb(0, 0, 0) 0px 0px 6px' } : null),
                 ...style,
               }}
+              aria-hidden="true"
             >
               {shouldDisplayValue && (
                 <span

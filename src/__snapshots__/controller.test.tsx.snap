@@ -53,6 +53,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
     />
   </svg>
   <div
+    aria-hidden="true"
     style={
       Object {
         "background": undefined,
@@ -686,6 +687,7 @@ exports[`Controller should render correct when shouldAnimateNumber set to false 
     />
   </svg>
   <div
+    aria-hidden="true"
     style={
       Object {
         "background": undefined,
@@ -774,6 +776,7 @@ exports[`Controller should render correctly 1`] = `
     />
   </svg>
   <div
+    aria-hidden="true"
     style={
       Object {
         "background": undefined,
