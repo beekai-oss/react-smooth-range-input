@@ -34,7 +34,7 @@ interface Props {
   max: number;
   min: number;
   isFocusing?: boolean;
-  focusStyle?: string,
+  focusStyle?: string;
 }
 
 const flipNumberProps = {
@@ -105,6 +105,7 @@ export default React.forwardRef(function Controller(
         width: controllerWidth,
         height: controllerHeight - 10,
         outline: 'none',
+        ...(isTouchDevice ? { pointerEvents: 'none' } : null),
       }}
       role="slider"
       aria-valuenow={value}
