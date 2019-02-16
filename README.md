@@ -18,8 +18,6 @@
     </a>
 </p>
 
-😍 <a href="https://react-smooth-range-input.now.sh" target="_blank">Check it out.</a>
-
 ## Quickstart
 
 ```jsx
