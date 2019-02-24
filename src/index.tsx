@@ -141,6 +141,7 @@ export default class Slider extends React.PureComponent<Props, State> {
   }
 
   onResize = debounce(() => {
+    if (!this.wrapperRef.current) return;
     const { width } = this.wrapperRef.current.getBoundingClientRect();
     const { min, padding } = this.props;
     this.maxScrollDistance = getMaxScrollDistance(width, this.controllerWidth, padding!);
