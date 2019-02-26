@@ -39,13 +39,13 @@ interface Props {
   controllerHeight?: number;
   barHeight?: number;
   barStyle: { string: number | string };
-  focusStyle?: string,
+  focusStyle?: string;
 }
 
 interface State {
   dragX: number;
   showBubble: boolean;
-  isFocusing: boolean,
+  isFocusing: boolean;
 }
 
 export default class Slider extends React.PureComponent<Props, State> {
@@ -78,6 +78,8 @@ export default class Slider extends React.PureComponent<Props, State> {
   isControlByKeyBoard = false;
 
   wrapperRef: any = React.createRef();
+
+  controllerRootRef: any = React.createRef();
 
   touchDevice: boolean = isTouchDevice();
 
@@ -238,6 +240,20 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.clientX = e.clientX;
   };
 
+  onFocus = () => {
+    this.setState({
+      isFocusing: true,
+    });
+    document.addEventListener('keydown', this.onKeyEvent);
+  };
+
+  onBlur = () => {
+    this.setState({
+      isFocusing: false,
+    });
+    document.removeEventListener('keydown', this.onKeyEvent);
+  };
+
   onClick = (e: any) => {
     const { padding, disabled } = this.props;
     if (disabled) return;
@@ -258,6 +274,8 @@ export default class Slider extends React.PureComponent<Props, State> {
     this.timer = setTimeout(() => {
       this.calculateValueAndUpdateStore();
     }, delayMsForAnimation);
+
+    this.controllerRootRef.current.focus();
   };
 
   onKeyEvent = (e: KeyboardEvent) => {
@@ -338,26 +356,15 @@ export default class Slider extends React.PureComponent<Props, State> {
               onTouchStart: this.onTouchStart,
               onTouchMove: this.onTouchMove,
             }
-          : {
-              onClick: this.onClick,
-            })}
+          : {})}
+        onClick={this.onClick}
         ref={this.wrapperRef}
       >
         <Controller
           isTouchDevice={this.touchDevice}
           focusStyle={focusStyle}
-          onFocus={() => {
-            this.setState({
-              isFocusing: true,
-            });
-            document.addEventListener('keydown', this.onKeyEvent)
-          }}
-          onBlur={() => {
-            this.setState({
-              isFocusing: false,
-            });
-            document.removeEventListener('keydown', this.onKeyEvent)
-          }}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
           height={barHeight}
           isFocusing={isFocusing}
           controllerWidth={this.controllerWidth}
@@ -376,7 +383,11 @@ export default class Slider extends React.PureComponent<Props, State> {
           isThin={isThin}
           disabled={disabled}
           customController={customController}
-          ref={this.controllerRef}
+          ref={{
+            // @ts-ignore: Unreachable code error
+            controllerRootRef: this.controllerRootRef,
+            controllerRef: this.controllerRef,
+          }}
           max={max}
           min={min}
         />

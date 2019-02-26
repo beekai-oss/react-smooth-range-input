@@ -78,6 +78,8 @@ export default React.forwardRef(function Controller(
   }: Props,
   ref: any,
 ) {
+  const controllerRootRef = (ref || {}).controllerRootRef;
+  const controllerRef = (ref || {}).controllerRef;
   let top = (isThin ? height - controllerHeight : height - controllerHeight) / 2;
 
   if (customController) {
@@ -86,16 +88,20 @@ export default React.forwardRef(function Controller(
 
   return (
     <div
-      tabIndex={0}
+      {...{
+        onClick: e => {
+          if (typeof e.cancelable !== 'boolean' || e.cancelable) e.stopPropagation();
+        },
+        onFocus: onFocus,
+        onBlur: onBlur,
+      }}
       {...(isTouchDevice
         ? {}
         : {
-            onClick: e => e.stopPropagation(),
-            onFocus: onFocus,
-            onBlur: onBlur,
             onMouseDown: onMouseDown,
             onMouseUp: onInteractEnd,
           })}
+      tabIndex={0}
       style={{
         top: `${top}px`,
         position: 'absolute',
@@ -112,6 +118,7 @@ export default React.forwardRef(function Controller(
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuetext={value.toString()}
+      ref={controllerRootRef}
     >
       {!customController && (
         <Animate
@@ -163,7 +170,7 @@ export default React.forwardRef(function Controller(
         render={({ style }) =>
           customController ? (
             customController({
-              ref,
+              ref: controllerRef,
               value,
             })
           ) : (
