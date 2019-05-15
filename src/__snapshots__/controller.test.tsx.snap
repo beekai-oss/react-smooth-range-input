@@ -34,7 +34,6 @@ exports[`Controller should render correct when isThin set to true 1`] = `
         "position": "absolute",
         "top": "-25px",
         "transform": "translateY(0)",
-        "transition": "all 0.3s cubic-bezier(0.86, 0, 0.07, 1) 0s",
       }
     }
     viewBox="0 0 40 64"
@@ -61,7 +60,6 @@ exports[`Controller should render correct when isThin set to true 1`] = `
         "height": "0px",
         "position": "absolute",
         "transform": "translateY(0)",
-        "transition": "all 0.1s cubic-bezier(0.86, 0, 0.07, 1) 0s",
         "width": "0px",
       }
     }
@@ -107,7 +105,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
                 "height": "100%",
                 "position": "absolute",
                 "transformStyle": "preserve-3d",
-                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+                "transition": "all 0.3s cubic-bezier(0.19, 1, 0.22, 1) 0s",
               }
             }
           >
@@ -377,7 +375,7 @@ exports[`Controller should render correct when isThin set to true 1`] = `
                 "height": "100%",
                 "position": "absolute",
                 "transformStyle": "preserve-3d",
-                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+                "transition": "all 0.3s cubic-bezier(0.19, 1, 0.22, 1) 0s",
               }
             }
           >
@@ -668,7 +666,6 @@ exports[`Controller should render correct when shouldAnimateNumber set to false 
         "position": "absolute",
         "top": "-25px",
         "transform": "translateY(0)",
-        "transition": "all 0.3s cubic-bezier(0.86, 0, 0.07, 1) 0s",
       }
     }
     viewBox="0 0 40 64"
@@ -695,7 +692,6 @@ exports[`Controller should render correct when shouldAnimateNumber set to false 
         "height": "0px",
         "position": "absolute",
         "transform": "translateY(0)",
-        "transition": "all 0.1s cubic-bezier(0.86, 0, 0.07, 1) 0s",
         "width": "0px",
       }
     }
@@ -757,7 +753,6 @@ exports[`Controller should render correctly 1`] = `
         "position": "absolute",
         "top": "-25px",
         "transform": "translateY(0)",
-        "transition": "all 0.3s cubic-bezier(0.86, 0, 0.07, 1) 0s",
       }
     }
     viewBox="0 0 40 64"
@@ -784,7 +779,6 @@ exports[`Controller should render correctly 1`] = `
         "height": "0px",
         "position": "absolute",
         "transform": "translateY(0)",
-        "transition": "all 0.1s cubic-bezier(0.86, 0, 0.07, 1) 0s",
         "width": "0px",
       }
     }
@@ -830,7 +824,7 @@ exports[`Controller should render correctly 1`] = `
                 "height": "100%",
                 "position": "absolute",
                 "transformStyle": "preserve-3d",
-                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+                "transition": "all 0.3s cubic-bezier(0.19, 1, 0.22, 1) 0s",
               }
             }
           >
@@ -1100,7 +1094,7 @@ exports[`Controller should render correctly 1`] = `
                 "height": "100%",
                 "position": "absolute",
                 "transformStyle": "preserve-3d",
-                "transition": "all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0s",
+                "transition": "all 0.3s cubic-bezier(0.19, 1, 0.22, 1) 0s",
               }
             }
           >

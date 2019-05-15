@@ -5,7 +5,7 @@ import { bubbleWithTail, bubble } from './constants/svgPath';
 
 const commonAnimationProps = {
   easeType: 'cubic-bezier(0.86, 0, 0.07, 1)',
-  startStyle: {
+  start: {
     transform: 'translateY(0)',
   },
 };
@@ -43,7 +43,7 @@ const flipNumberProps = {
   color: 'black',
   background: 'white',
   perspective: 370,
-  durationSeconds: 0.4,
+  duration: 0.4,
   play: true,
   numberStyle: { outline: '1px solid transparent' },
   disabled: false,
@@ -124,12 +124,11 @@ export default React.forwardRef(function Controller(
         <Animate
           play={showBubble}
           {...commonAnimationProps}
-          reverseDurationSeconds={0.3}
-          durationSeconds={0.2}
-          startStyle={{
+          duration={showBubble ? 0.2 : 0.3}
+          start={{
             transform: 'translateY(0)',
           }}
-          endStyle={{
+          end={{
             transform: `translateY(-${isThin ? 32 : 22}px) scale(1.65)`,
           }}
           easeType="cubic-bezier(0.86, 0, 0.07, 1)"
@@ -162,11 +161,10 @@ export default React.forwardRef(function Controller(
       <Animate
         play={showBubble}
         {...commonAnimationProps}
-        endStyle={{
+        end={{
           transform: `translateY(-${isThin ? 58 : 48}px) scale(1.3)`,
         }}
-        durationSeconds={0.3}
-        reverseDurationSeconds={0.1}
+        duration={showBubble? 0.3 : 0.1}
         render={({ style }) =>
           customController ? (
             customController({
