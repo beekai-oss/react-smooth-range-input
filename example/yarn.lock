@@ -7951,19 +7951,12 @@ react-error-overlay@^5.1.2:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.2.tgz#888957b884d4b25b083a82ad550f7aad96585394"
   integrity sha512-7kEBKwU9R8fKnZJBRa5RSIfay4KJwnYvKB6gODGicUmDSAhQJ7Tdnll5S0RLtYrzRfMVXlqYw61rzrSpP4ThLQ==
 
-react-flip-numbers@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-flip-numbers/-/react-flip-numbers-2.1.0.tgz#a382a7f9e9e4ca113916165cb5218fa7fa50210c"
-  integrity sha512-z7ekb9FmcHZ4cGKCG2Ui9mfMNr9kVwcdk+pl3PyLDNxT/AJOl9FwW5QArtS/aN4r1J2RGV0pV0A4WnPL8eKQ2Q==
+react-flip-numbers@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-flip-numbers/-/react-flip-numbers-3.0.2.tgz#62f30a629479d75dc661acfbe7468af3965bc160"
+  integrity sha512-b79rkh8f4Bfu00dcdEtKKwKkrjaFH65xazFZHHbgKviBDnqdOTg+GlB8TaCN/APJ1LDohWNX+FSlpiSfzNMCXA==
   dependencies:
-    react-simple-animate "2.5.0"
-
-react-flip-numbers@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/react-flip-numbers/-/react-flip-numbers-2.1.3.tgz#817bd446b76216e7360f2a965a82ff6a09610714"
-  integrity sha512-TJQrdYTaeAfP+VAD1jEzWxfgAJIoYr8pjUOp4pCSmcwaizOW8GDCMMVw5YYg6gIEkM2mmfp4gRAUsf9eCjZ3OQ==
-  dependencies:
-    react-simple-animate "^2.6.0"
+    react-simple-animate "3.0.2"
 
 react-scripts@2.1.3:
   version "2.1.3"
@@ -8020,28 +8013,18 @@ react-scripts@2.1.3:
   optionalDependencies:
     fsevents "1.2.4"
 
-react-simple-animate@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.5.0.tgz#f25c83bee1299367714fe5161f40e417120fd74e"
-  integrity sha512-e2GL46oVO0Y7CwuHEf1ZvLQt3wbJ5B9f5H+UkHXEvDDDkMMcCRz+w0DAWkz7icD0d+++1FfQt5MR9IBnYYMuAQ==
+react-simple-animate@3.0.2, react-simple-animate@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-3.0.2.tgz#67f29b0c64155d2dfd540c1c74f634ef521536a8"
+  integrity sha512-GDpznDMpIHHdH6L6AZo9nNry6Xsq7forKmd6rwigMSuxe4FS9ihK0HSC1odB4WWKbA87S8VL7EVR9JeTRVkbQA==
 
-react-simple-animate@^2.6.0:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.6.4.tgz#6a6fd5d52801c0a52873204dfb236c778d781262"
-  integrity sha512-Jj6hVRJbb+OrEOv/yviuIoacQCDOI7hMOXOMZ5pF/rlD7iK8U4F98bta1MgN7PrSXBYHq2Yt7+bhGMxj5pr5XA==
-
-react-simple-animate@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-3.0.1.tgz#4f0768069a5b99744069e8815f7a5d5c848bb093"
-  integrity sha512-HlXVleShQvDiwvv7C1sEet166XskRT5TLf2IRdlianz5XJPV/kXALTBB6sJFD3JuvPEvL6siP5+uozCXeZwPYg==
-
-react-smooth-range-input@0.3.0-beta.1:
-  version "0.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/react-smooth-range-input/-/react-smooth-range-input-0.3.0-beta.1.tgz#c29256c4e3aae8a1b48b4dc4348cf8d5de95484f"
-  integrity sha512-1w53iS1lH+eBU0WyJ9vVsycS0XMfmseO0/ZNdEJY+2U/0Orc3xSN90zOlFCx14Kg/NN12aRzGH5oJvuRc31I5w==
+react-smooth-range-input@0.3.1-beta.2:
+  version "0.3.1-beta.2"
+  resolved "https://registry.yarnpkg.com/react-smooth-range-input/-/react-smooth-range-input-0.3.1-beta.2.tgz#ef40b37ac49b6a517fe026c5b8e8c5283fa18968"
+  integrity sha512-UR/0EbLHAK+Y35cqFcphO4EAw4yVk0Oo/8UQM3yxADhePAoJ9l7Aqx2GGtM4WNbx2ItyjiSLcYxX1VFGWKXJxg==
   dependencies:
-    react-flip-numbers "^2.1.3"
-    react-simple-animate "^3.0.1"
+    react-flip-numbers "3.0.2"
+    react-simple-animate "^3.0.2"
 
 react@^16.8.6:
   version "16.8.6"
