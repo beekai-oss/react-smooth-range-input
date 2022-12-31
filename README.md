@@ -38,3 +38,8 @@ export default () => <Slider value={1} min={1} max={30} />;
 | `disabled`         | boolean                                          |          | disable the component                        |
 | `hasTickMarks`     | boolean = true                                   |          | show tick marks only apply to thick type     |
 | `customController` | ({ ref: any, value: number }) => React.ReactNode |          | custom controller: make sure to pass the ref |
+
+
+## By the makers of BEEKAI
+
+We also make [BEEKAI](https://www.beekai.com/). Build the next-generation forms with modern technology and best in class user experience and accessibility.
