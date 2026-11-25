@@ -101,7 +101,9 @@ export default class Slider extends React.PureComponent<Props, State> {
 
   timer: any;
 
-  totalStepsNumber: number = this.props.max - this.props.min;
+  get totalStepsNumber(): number {
+    return this.props.max - this.props.min;
+  }
 
   calculatePositionWithOffset = calculatePosition.bind(null, this.props.padding!, this.controllerHeight);
 
